@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.7.+'
+    }
+}
+apply plugin: 'android-library'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
+
+    defaultConfig {
+        minSdkVersion 3
+        targetSdkVersion 3
+        versionCode 1
+        versionName "1.0"
+    }
+    release {
+        runProguard false
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+    }
+}
+
+task clearJar(type: Delete) {
+    delete 'build/libs/RootTools.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/bundles/debug/')
+    into('build/libs/')
+    include('classes.jar')
+    rename ('classes.jar', 'RootTools.jar')
+}
+
+makeJar.dependsOn(clearJar, assemble)
