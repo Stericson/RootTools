@@ -24,7 +24,6 @@ package com.stericson.RootToolsTests;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeoutException;
 
 import android.app.Activity;
@@ -109,7 +108,7 @@ public class SanityCheckRootTools extends Activity {
         }
 
         try {
-            if (false == RootTools.isAccessGiven()) {
+            if (!RootTools.isAccessGiven()) {
                 print("ERROR: No root access to this device.\n");
                 return;
             }

@@ -124,8 +124,7 @@ class Installer {
                 long pos = 0;
                 try {
 					long size = iss.available();
-					while ((pos += ofc.transferFrom(rfc, pos, size
-							- pos)) < size)
+					while ((pos += ofc.transferFrom(rfc, pos, size- pos)) < size)
 						;
                 } catch (IOException ex) {
                     if (RootTools.debugMode) {

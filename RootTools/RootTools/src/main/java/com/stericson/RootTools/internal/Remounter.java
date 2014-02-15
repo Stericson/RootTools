@@ -26,8 +26,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import android.util.Log;
-
 import com.stericson.RootTools.Constants;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.containers.Mount;

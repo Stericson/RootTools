@@ -30,7 +30,6 @@ import android.os.Message;
 
 import java.io.IOException;
 
-import com.stericson.RootTools.Constants;
 import com.stericson.RootTools.RootTools;
 
 public abstract class Command {
