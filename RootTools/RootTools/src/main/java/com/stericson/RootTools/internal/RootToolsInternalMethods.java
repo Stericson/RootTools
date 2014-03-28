@@ -217,7 +217,7 @@ public final class RootToolsInternalMethods {
                 RootTools.log("cp command is available!");
 
                 if (preserveFileAttributes) {
-                    command = new CommandCapture(0, false, "cp -fp " + source + " " + destination);
+                    command = new CommandCapture(0, false, "cp -fp " + quoteParam(source) + " " + quoteParam(destination));
                     Shell.startRootShell().add(command);
                     commandWait(Shell.startRootShell(), command);
 
@@ -225,7 +225,7 @@ public final class RootToolsInternalMethods {
                     result = command.getExitCode() == 0;
 
                 } else {
-                    command = new CommandCapture(0, false, "cp -f " + source + " " + destination);
+                    command = new CommandCapture(0, false, "cp -f " + quoteParam(source) + " " + quoteParam(destination));
                     Shell.startRootShell().add(command);
                     commandWait(Shell.startRootShell(), command);
 
@@ -238,12 +238,12 @@ public final class RootToolsInternalMethods {
                     RootTools.log("busybox cp command is available!");
 
                     if (preserveFileAttributes) {
-                        command = new CommandCapture(0, false, "busybox cp -fp " + source + " " + destination);
+                        command = new CommandCapture(0, false, "busybox cp -fp " + quoteParam(source) + " " + quoteParam(destination));
                         Shell.startRootShell().add(command);
                         commandWait(Shell.startRootShell(), command);
 
                     } else {
-                        command = new CommandCapture(0, false, "busybox cp -f " + source + " " + destination);
+                        command = new CommandCapture(0, false, "busybox cp -f " + quoteParam(source) + " " + quoteParam(destination));
                         Shell.startRootShell().add(command);
                         commandWait(Shell.startRootShell(), command);
 
@@ -261,13 +261,13 @@ public final class RootToolsInternalMethods {
                         }
 
                         // copy with cat
-                        command = new CommandCapture(0, false, "cat " + source + " > " + destination);
+                        command = new CommandCapture(0, false, "cat " + quoteParam(source) + " > " + quoteParam(destination));
                         Shell.startRootShell().add(command);
                         commandWait(Shell.startRootShell(), command);
 
                         if (preserveFileAttributes) {
                             // set premissions of source to destination
-                            command = new CommandCapture(0, false, "chmod " + filePermission + " " + destination);
+                            command = new CommandCapture(0, false, "chmod " + filePermission + " " + quoteParam(destination));
                             Shell.startRootShell().add(command);
                             commandWait(Shell.startRootShell(), command);
                         }
@@ -352,7 +352,7 @@ public final class RootToolsInternalMethods {
             if (hasUtil("rm", "toolbox")) {
                 RootTools.log("rm command is available!");
 
-                CommandCapture command = new CommandCapture(0, false, "rm -r " + target);
+                CommandCapture command = new CommandCapture(0, false, "rm -r " + quoteParam(target));
                 Shell.startRootShell().add(command);
                 commandWait(Shell.startRootShell(), command);
 
@@ -364,7 +364,7 @@ public final class RootToolsInternalMethods {
                 if (checkUtil("busybox") && hasUtil("rm", "busybox")) {
                     RootTools.log("busybox cp command is available!");
 
-                    CommandCapture command = new CommandCapture(0, false, "busybox rm -rf " + target);
+                    CommandCapture command = new CommandCapture(0, false, "busybox rm -rf " + quoteParam(target));
                     Shell.startRootShell().add(command);
                     commandWait(Shell.startRootShell(), command);
 
@@ -397,7 +397,7 @@ public final class RootToolsInternalMethods {
     public boolean exists(final String file) {
         final List<String> result = new ArrayList<String>();
 
-        CommandCapture command = new CommandCapture(0, false, "ls " + file) {
+        CommandCapture command = new CommandCapture(0, false, "ls " + quoteParam(file)) {
             @Override
             public void output(int arg0, String arg1) {
                 RootTools.log(arg1);
@@ -723,7 +723,7 @@ public final class RootToolsInternalMethods {
      */
     public String getInode(String file) {
         try {
-            CommandCapture command = new CommandCapture(Constants.GI, false, "/data/local/ls -i " + file) {
+            CommandCapture command = new CommandCapture(Constants.GI, false, "/data/local/ls -i " + quoteParam(file)) {
 
                 @Override
                 public void output(int id, String line) {
@@ -820,10 +820,10 @@ public final class RootToolsInternalMethods {
             try {
 
                 CommandCapture command = new CommandCapture(
-                        Constants.FPS, false, "ls -l " + file,
-                        "busybox ls -l " + file,
-                        "/system/bin/failsafe/toolbox ls -l " + file,
-                        "toolbox ls -l " + file) {
+                        Constants.FPS, false, "ls -l " + quoteParam(file),
+                        "busybox ls -l " + quoteParam(file),
+                        "/system/bin/failsafe/toolbox ls -l " + quoteParam(file),
+                        "toolbox ls -l " + quoteParam(file)) {
                     @Override
                     public void output(int id, String line) {
                         if (id == Constants.FPS) {
@@ -976,7 +976,7 @@ public final class RootToolsInternalMethods {
         boolean found = false;
         RootTools.log("Looking for Space");
         try {
-            final CommandCapture command = new CommandCapture(Constants.GS, false, "df " + path) {
+            final CommandCapture command = new CommandCapture(Constants.GS, false, "df " + quoteParam(path)) {
 
                 @Override
                 public void output(int id, String line) {
@@ -1045,7 +1045,7 @@ public final class RootToolsInternalMethods {
         try {
             final List<String> results = new ArrayList<String>();
 
-            CommandCapture command = new CommandCapture(Constants.GSYM, false, "ls -l " + file) {
+            CommandCapture command = new CommandCapture(Constants.GSYM, false, "ls -l " + quoteParam(file)) {
 
                 @Override
                 public void output(int id, String line) {
@@ -1111,7 +1111,7 @@ public final class RootToolsInternalMethods {
         Shell.startRootShell().add(command);
         commandWait(Shell.startRootShell(), command);
 
-        command = new CommandCapture(0, false, "find " + path + " -type l -exec ls -l {} \\; > /data/local/symlinks.txt");
+        command = new CommandCapture(0, false, "find " + quoteParam(path) + " -type l -exec ls -l {} \\; > /data/local/symlinks.txt");
         Shell.startRootShell().add(command);
         commandWait(Shell.startRootShell(), command);
 
@@ -1439,7 +1439,24 @@ public final class RootToolsInternalMethods {
         activity.startActivityForResult(i, requestCode);
         return i;
     }
-
+    
+    /**
+     * This will enclose a string in quotes if it contains a space, and isn't already quoted. Used
+     * to escape filenames or other parameters for shell commands.
+     *
+     * @param str    string to put in quotes
+     * @return quoted string
+     */
+    private String quoteParam(String filename) {
+        if (filename.contains(" ") && !filename.contains("\"")) {
+            if (filename.charAt(0) != '"' && filename.charAt(filename.length() - 1) != '"') {
+                return '"' + filename + '"';
+            }
+        }
+        
+        return filename;
+    }
+    
     private void commandWait(Shell shell, Command cmd) throws Exception {
 
         while (!cmd.isFinished()) {
