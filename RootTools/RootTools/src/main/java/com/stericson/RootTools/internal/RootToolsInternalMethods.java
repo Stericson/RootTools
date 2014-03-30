@@ -362,7 +362,7 @@ public final class RootToolsInternalMethods {
                 }
             } else {
                 if (checkUtil("busybox") && hasUtil("rm", "busybox")) {
-                    RootTools.log("busybox cp command is available!");
+                    RootTools.log("busybox rm command is available!");
 
                     CommandCapture command = new CommandCapture(0, false, "busybox rm -rf " + target);
                     Shell.startRootShell().add(command);
