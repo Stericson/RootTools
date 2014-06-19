@@ -31,7 +31,7 @@ import android.content.Context;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 
-public class Shell {
+public class Shell implements Closeable {
 
     //Statics -- visible to all
     private static int shellTimeout = 25000;
@@ -195,6 +195,7 @@ public class Shell {
         } catch (Exception ignore) {}
     }
 
+    @Override
     public void close() throws IOException {
         if (this == Shell.rootShell)
             Shell.rootShell = null;
