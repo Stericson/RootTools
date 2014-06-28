@@ -4,7 +4,7 @@
     <artifact type="jar" build-on-make="true" name="RootTools:jar">
       <output-path>$PROJECT_DIR$/out/artifacts/RootTools</output-path>
       <root id="archive" name="RootTools.jar">
-        <element id="module-output" name="RootTools-new" />
+        <element id="module-output" name="RootTools" />
       </root>
     </artifact>
   </component>
@@ -226,7 +226,7 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RootTools-new.iml" filepath="$PROJECT_DIR$/RootTools-new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RootTools.iml" filepath="$PROJECT_DIR$/RootTools.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="Android 1.6 Platform" project-jdk-type="Android SDK">

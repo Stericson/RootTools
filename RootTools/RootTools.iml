@@ -5,6 +5,7 @@
       <configuration>
         <option name="LIBRARY_PROJECT" value="true" />
         <option name="UPDATE_PROPERTY_FILES" value="true" />
+        <option name="ENABLE_SOURCES_AUTOGENERATION" value="false" />
       </configuration>
     </facet>
   </component>
