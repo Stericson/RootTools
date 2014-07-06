@@ -363,18 +363,48 @@ public final class RootTools {
      * This will open or return, if one is already open, a shell, you are responsible for managing the shell, reading the output
      * and for closing the shell when you are done using it.
      *
-     * @param retry a <code>int</code> to indicate how many times the ROOT shell should try to open with root priviliges...
      * @throws TimeoutException
      * @throws com.stericson.RootTools.exceptions.RootDeniedException
      * @param    root a <code>boolean</code> to Indicate whether or not you want to open a root shell or a standard shell
      * @param    timeout an <code>int</code> to Indicate the length of time to wait before giving up on opening a shell.
+     * @param    shellContext the context to execute the shell with
+     * @param    retry a <code>int</code> to indicate how many times the ROOT shell should try to open with root priviliges...
      * @throws IOException
      */
-    public static Shell getShell(boolean root, int timeout, int retry) throws IOException, TimeoutException, RootDeniedException {
+    public static Shell getShell(boolean root, int timeout, Shell.ShellContext shellContext, int retry) throws IOException, TimeoutException, RootDeniedException {
         if (root)
-            return Shell.startRootShell(timeout);
+            return Shell.startRootShell(timeout, shellContext, retry);
         else
             return Shell.startShell(timeout);
+    }
+
+    /**
+     * This will open or return, if one is already open, a shell, you are responsible for managing the shell, reading the output
+     * and for closing the shell when you are done using it.
+     *
+     * @throws TimeoutException
+     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @param    root a <code>boolean</code> to Indicate whether or not you want to open a root shell or a standard shell
+     * @param    timeout an <code>int</code> to Indicate the length of time to wait before giving up on opening a shell.
+     * @param    shellContext the context to execute the shell with
+     * @throws IOException
+     */
+    public static Shell getShell(boolean root, int timeout, Shell.ShellContext shellContext) throws IOException, TimeoutException, RootDeniedException {
+        return getShell(root, timeout, shellContext, 3);
+    }
+
+    /**
+     * This will open or return, if one is already open, a shell, you are responsible for managing the shell, reading the output
+     * and for closing the shell when you are done using it.
+     *
+     * @throws TimeoutException
+     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @param    root a <code>boolean</code> to Indicate whether or not you want to open a root shell or a standard shell
+     * @param    shellContext the context to execute the shell with
+     * @throws IOException
+     */
+    public static Shell getShell(boolean root, Shell.ShellContext shellContext) throws IOException, TimeoutException, RootDeniedException {
+        return getShell(root, 0, Shell.defaultContext, 3);
     }
 
     /**
@@ -388,7 +418,7 @@ public final class RootTools {
      * @throws IOException
      */
     public static Shell getShell(boolean root, int timeout) throws IOException, TimeoutException, RootDeniedException {
-        return getShell(root, timeout, 3);
+        return getShell(root, timeout, Shell.defaultContext, 3);
     }
 
     /**
@@ -401,7 +431,7 @@ public final class RootTools {
      * @throws IOException
      */
     public static Shell getShell(boolean root) throws IOException, TimeoutException, RootDeniedException {
-        return RootTools.getShell(root, 25000);
+        return RootTools.getShell(root, 0);
     }
 
     /**
