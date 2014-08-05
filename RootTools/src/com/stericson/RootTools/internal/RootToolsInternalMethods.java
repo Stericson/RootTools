@@ -1258,6 +1258,34 @@ public final class RootToolsInternalMethods {
     }
 
     /**
+     * This method can be used to unpack a binary from the assets folder and store it in
+     * /data/data/app.package/files/ This is typically useful if you provide your own C- or
+     * C++-based binary. This binary can then be executed using sendShell() and its full path.
+     *
+     * @param context  the current activity's <code>Context</code>
+     * @param srcName  asset source file name
+     * @param destName destination file name; appended to /data/data/app.package/files/
+     * @param mode     chmod value for this file
+     * @return a <code>boolean</code> which indicates whether or not we were able to create the new
+     *         file.
+     */
+    public boolean installAssetsBinary(Context context, String srcName, String destName, String mode) {
+        Installer installer;
+
+        try {
+            installer = new Installer(context);
+        } catch (IOException ex) {
+            if (RootTools.debugMode) {
+                ex.printStackTrace();
+            }
+            return false;
+        }
+
+        return (installer.installAssetsBinary(srcName, destName, mode));
+    }
+
+
+    /**
      * This method checks whether a binary is installed.
      *
      * @param context    the current activity's <code>Context</code>

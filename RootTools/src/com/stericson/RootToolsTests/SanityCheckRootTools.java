@@ -149,12 +149,19 @@ public class SanityCheckRootTools extends Activity {
             // First test: Install a binary file for future use
             // if it wasn't already installed.
             /*
+	    Context mContext = getApplicationContext();
             visualUpdate(TestHandler.ACTION_PDISPLAY, "Installing binary if needed");
             if(false == RootTools.installBinary(mContext, R.raw.nes, "nes_binary")) {
                 visualUpdate(TestHandler.ACTION_HIDE, "ERROR: Failed to install binary. Please see log file.");
                 return;
             }
-            */
+
+	    visualUpdate(TestHandler.ACTION_PDISPLAY, "Installing assets binary if needed");
+            if(false == RootTools.installAssetsBinary(mContext, "nes_binary", "nes_binary")) {
+                visualUpdate(TestHandler.ACTION_HIDE, "ERROR: Failed to install assert binary. Please see log file.");
+                return;
+            }
+	    */
 
             boolean result;
 

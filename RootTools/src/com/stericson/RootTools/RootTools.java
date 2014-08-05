@@ -539,6 +539,38 @@ public final class RootTools {
     }
 
     /**
+     * This method can be used to unpack a binary from the assets folder and store it in
+     * /data/data/app.package/files/ This is typically useful if you provide your own C- or
+     * C++-based binary. This binary can then be executed using sendShell() and its full path.
+     *
+     * @param context  the current activity's <code>Context</code>
+     * @param srcName  asset source file Name
+     * @param destName destination file name; appended to /data/data/app.package/files/
+     * @param mode     chmod value for this file
+     * @return a <code>boolean</code> which indicates whether or not we were able to create the new
+     *         file.
+     */
+    public static boolean installAssetsBinary(Context context, String srcName, String destName, String mode) {
+        return getInternals().installAssetsBinary(context, srcName, destName, mode);
+    }
+
+    /**
+     * This method can be used to unpack a binary from the assets folder and store it in
+     * /data/data/app.package/files/ This is typically useful if you provide your own C- or
+     * C++-based binary. This binary can then be executed using sendShell() and its full path.
+     *
+     * @param context    the current activity's <code>Context</code>
+     * @param srcName    the asset sourcd file name
+     * @param binaryName destination file name; appended to /data/data/app.package/files/
+     * @return a <code>boolean</code> which indicates whether or not we were able to create the new
+     *         file.
+     */
+    public static boolean installAssetsBinary(Context context, String srcName, String binaryName) {
+        return installAssetsBinary(context, srcName, binaryName, "700");
+    }
+
+
+    /**
      * This method checks whether a binary is installed.
      *
      * @param context    the current activity's <code>Context</code>
