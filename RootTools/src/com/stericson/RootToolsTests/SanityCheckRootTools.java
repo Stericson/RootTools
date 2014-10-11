@@ -257,17 +257,15 @@ public class SanityCheckRootTools extends Activity {
                 visualUpdate(TestHandler.ACTION_DISPLAY, "Permissions == null k\n\n");
             }
 
-            visualUpdate(TestHandler.ACTION_PDISPLAY, "JAVA");
-            visualUpdate(TestHandler.ACTION_DISPLAY, "[ Running some Java code ]\n");
+            visualUpdate(TestHandler.ACTION_PDISPLAY, "Switching RootContext");
+            visualUpdate(TestHandler.ACTION_DISPLAY, "[ Switching Root Context and running code... ]\n");
 
             Shell shell;
             try {
-                shell = RootTools.getShell(true);
-                JavaCommandCapture cmd = new JavaCommandCapture(
-                        43,
-                        false,
-                        SanityCheckRootTools.this,
-                        "com.stericson.RootToolsTests.NativeJavaClass") {
+                shell = RootTools.getShell(true, Shell.ShellContext.SYSTEM_APP);
+                CommandCapture cmd = new CommandCapture(
+                        0,
+                        "id") {
 
                     @Override
                     public void commandOutput(int id, String line) {

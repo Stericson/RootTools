@@ -171,6 +171,12 @@ public abstract class Command {
         if(javaCommand) {
             String filePath = context.getFilesDir().getPath();
             for (int i = 0; i < command.length; i++) {
+
+                if(i > 0)
+                {
+                    sb.append('\n');
+                }
+
                 /*
                  * TODO Make withFramework optional for applications
                  * that do not require access to the fw. -CFR
@@ -180,13 +186,16 @@ public abstract class Command {
                         + " com.android.internal.util.WithFramework"
                         + " com.stericson.RootTools.containers.RootClass "
                         + command[i]);
-                sb.append('\n');
             }
         }
         else {
             for (int i = 0; i < command.length; i++) {
+                if(i > 0)
+                {
+                    sb.append('\n');
+                }
+
                 sb.append(command[i]);
-                sb.append('\n');
             }
         }
         return sb.toString();

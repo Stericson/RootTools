@@ -91,6 +91,7 @@ public class Shell {
 
     public boolean isExecuting = false;
     public boolean isReading = false;
+    public boolean isClosed = false;
 
     private int maxCommands = 5000;
     private int read = 0;
@@ -250,12 +251,7 @@ public class Shell {
     }
 
     public void close() throws IOException {
-        if (this == Shell.rootShell)
-            Shell.rootShell = null;
-        else if (this == Shell.shell)
-            Shell.shell = null;
-        else if (this == Shell.customShell)
-            Shell.customShell = null;
+
         synchronized (this.commands) {
             /**
              * instruct the two threads monitoring input and output
@@ -264,6 +260,28 @@ public class Shell {
             this.close = true;
             this.notifyThreads();
         }
+
+        int count = 0;
+        while(isExecuting)
+        {
+            RootTools.log("Waiting on shell to finish executing before closing...");
+            count++;
+
+            //failsafe to keep from hanging...
+            if(count > 1000)
+            {
+                break;
+            }
+        }
+
+        RootTools.log("Shell Closed!");
+
+        if (this == Shell.rootShell)
+            Shell.rootShell = null;
+        else if (this == Shell.shell)
+            Shell.shell = null;
+        else if (this == Shell.customShell)
+            Shell.customShell = null;
     }
 
     public static void closeCustomShell() throws IOException {
@@ -374,7 +392,7 @@ public class Shell {
                         isExecuting = true;
                         Command cmd = commands.get(write);
                         cmd.startExecution();
-                        RootTools.log("Executing: " + cmd.getCommand());
+                        RootTools.log("Executing: " + cmd.getCommand() + " with context: " + shellContext);
 
                         out.write(cmd.getCommand());
                         String line = "\necho " + token + " " + totalExecuted + " $?\n";
@@ -442,6 +460,7 @@ public class Shell {
 
                             continue;
                         }
+
                         command = commands.get(read);
                     }
 
@@ -506,8 +525,6 @@ public class Shell {
                 closeQuietly(out);
                 closeQuietly(in);
 
-                RootTools.log("Shell destroyed");
-
                 while (read < commands.size()) {
                     if (command == null)
                         command = commands.get(read);
@@ -521,6 +538,11 @@ public class Shell {
 
             } catch (IOException e) {
                 RootTools.log(e.getMessage(), 2, e);
+            }
+            finally {
+                RootTools.log("Shell destroyed");
+                isClosed = true;
+                isReading = false;
             }
         }
     };
@@ -566,7 +588,7 @@ public class Shell {
         }
         else if (Shell.rootShell.shellContext != shellContext) {
             try {
-                RootTools.log("Context is different than open shell, switching context...");
+                RootTools.log("Context is different than open shell, switching context... " + Shell.rootShell.shellContext + " VS " + shellContext);
                 Shell.rootShell.switchRootShellContext(shellContext);
             } catch (IOException e) {
                 RootTools.log("Context could not be switched for existing root shell...");
@@ -623,6 +645,7 @@ public class Shell {
             }
 
             //create new root shell with new context...
+
             return Shell.startRootShell(this.shellTimeout, shellContext, 3);
         }
         else

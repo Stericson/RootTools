@@ -404,7 +404,7 @@ public final class RootTools {
      * @throws IOException
      */
     public static Shell getShell(boolean root, Shell.ShellContext shellContext) throws IOException, TimeoutException, RootDeniedException {
-        return getShell(root, 0, Shell.defaultContext, 3);
+        return getShell(root, 0, shellContext, 3);
     }
 
     /**

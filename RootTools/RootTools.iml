@@ -3,7 +3,6 @@
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
-        <option name="LIBRARY_PROJECT" value="true" />
         <option name="UPDATE_PROPERTY_FILES" value="true" />
         <option name="ENABLE_SOURCES_AUTOGENERATION" value="false" />
       </configuration>

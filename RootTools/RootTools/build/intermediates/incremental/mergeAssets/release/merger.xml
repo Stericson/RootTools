@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="main" >
+        <source path="/Users/Stericson/PStuff/RootTools/RootTools/RootTools/src/main/assets" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="/Users/Stericson/PStuff/RootTools/RootTools/RootTools/src/release/assets" />
+    </dataSet>
+
+</merger>
