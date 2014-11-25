@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.TimeoutException;
 import java.util.regex.Matcher;
@@ -163,8 +164,8 @@ public final class RootToolsInternalMethods
         return null;
     }
 
-    public int parsePermissions(String permission)
-    {
+    public int parsePermissions(String permission) {
+        permission = permission.toLowerCase(Locale.US);
         int tmp;
         if (permission.charAt(0) == 'r')
         {
@@ -190,7 +191,8 @@ public final class RootToolsInternalMethods
         RootTools.log("permission " + tmp);
         RootTools.log("character " + permission.charAt(1));
 
-        if (permission.charAt(2) == 'x')
+        if (permission.charAt(2) == 'x' || permission.charAt(2) == 's'
+                || permission.charAt(2) == 't')
         {
             tmp += 1;
         }

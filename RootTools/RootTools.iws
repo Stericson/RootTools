@@ -79,10 +79,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Shell.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Shell.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/Shell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="20.168982" vertical-offset="6962" max-vertical-offset="18335">
+            <state vertical-scroll-proportion="-300.44827" vertical-offset="6962" max-vertical-offset="18335">
               <caret line="825" column="31" selection-start-line="825" selection-start-column="31" selection-end-line="825" selection-end-column="31" />
               <folding>
                 <element signature="e#0#27975#0" expanded="true" />
@@ -163,11 +163,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RootToolsInternalMethods.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="RootToolsInternalMethods.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/RootToolsInternalMethods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="8796" max-vertical-offset="34333">
-              <caret line="529" column="0" selection-start-line="529" selection-start-column="0" selection-end-line="529" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.2494577" vertical-offset="2621" max-vertical-offset="34352">
+              <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -298,6 +298,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="RootTools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RootTools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RootTools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RootTools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="internal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -858,17 +880,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/RootToolsInternalMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8796" max-vertical-offset="34333">
-          <caret line="529" column="0" selection-start-line="529" selection-start-column="0" selection-end-line="529" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/Shell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="20.168982" vertical-offset="6962" max-vertical-offset="18335">
+        <state vertical-scroll-proportion="-300.44827" vertical-offset="6962" max-vertical-offset="18335">
           <caret line="825" column="31" selection-start-line="825" selection-start-column="31" selection-end-line="825" selection-end-column="31" />
           <folding>
             <element signature="e#0#27975#0" expanded="true" />
@@ -878,6 +892,14 @@
             <element signature="e#14846#15054#0" expanded="true" />
             <element signature="e#15191#19400#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/RootToolsInternalMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2494577" vertical-offset="2621" max-vertical-offset="34352">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
