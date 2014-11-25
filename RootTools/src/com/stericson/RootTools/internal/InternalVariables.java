@@ -31,7 +31,8 @@ import com.stericson.RootTools.containers.Mount;
 import com.stericson.RootTools.containers.Permissions;
 import com.stericson.RootTools.containers.Symlink;
 
-public class InternalVariables {
+public class InternalVariables
+{
 
     // ----------------------
     // # Internal Variables #
@@ -59,7 +60,8 @@ public class InternalVariables {
     protected static final String PS_REGEX = "^\\S+\\s+([0-9]+).*$";
     protected static Pattern psPattern;
 
-    static {
+    static
+    {
         psPattern = Pattern.compile(PS_REGEX);
     }
 }

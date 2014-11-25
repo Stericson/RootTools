@@ -3,6 +3,7 @@
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
+        <option name="LIBRARY_PROJECT" value="true" />
         <option name="UPDATE_PROPERTY_FILES" value="true" />
         <option name="ENABLE_SOURCES_AUTOGENERATION" value="false" />
       </configuration>
@@ -12,7 +13,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/src/com/stericson/RootToolsTests" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 20, L preview Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
