@@ -3,3 +3,8 @@ RootTools provides rooted developers a standardized set of tools for use in the 
 You can find the latest release here: https://github.com/Stericson/RootTools/releases
 
 You can find more informaiton on our wiki: https://github.com/Stericson/RootTools/wiki
+
+
+For a more slimmed down library, check out RootShell:
+
+https://github.com/Stericson/RootShell
