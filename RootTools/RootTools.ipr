@@ -240,9 +240,7 @@
           <option name="USE_CUSTOM_SETTINGS" value="true" />
         </AndroidXmlCodeStyleSettings>
         <XML>
-          <option name="XML_KEEP_LINE_BREAKS" value="false" />
-          <option name="XML_ALIGN_ATTRIBUTES" value="false" />
-          <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
+          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
         </XML>
         <codeStyleSettings language="XML">
           <option name="FORCE_REARRANGE_MODE" value="1" />
@@ -255,7 +253,7 @@
                 <match>
                   <AND>
                     <NAME>xmlns:android</NAME>
-                    <XML_NAMESPACE />
+                    <XML_NAMESPACE>Namespace:</XML_NAMESPACE>
                   </AND>
                 </match>
               </rule>
@@ -263,7 +261,7 @@
                 <match>
                   <AND>
                     <NAME>xmlns:.*</NAME>
-                    <XML_NAMESPACE />
+                    <XML_NAMESPACE>Namespace:</XML_NAMESPACE>
                   </AND>
                 </match>
                 <order>BY_NAME</order>

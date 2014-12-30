@@ -220,7 +220,7 @@ public class SanityCheckRootTools extends Activity
 
             visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing getBusyBoxVersion");
             visualUpdate(TestHandler.ACTION_DISPLAY, "[ Checking busybox version ]\n");
-            visualUpdate(TestHandler.ACTION_DISPLAY, RootTools.getBusyBoxVersion("/system/bin/") + " k\n\n");
+            visualUpdate(TestHandler.ACTION_DISPLAY, RootTools.getBusyBoxVersion("/system/xbin/") + " k\n\n");
 
             try
             {
@@ -255,7 +255,7 @@ public class SanityCheckRootTools extends Activity
             {
 
                 visualUpdate(TestHandler.ACTION_DISPLAY, "[ Getting all available Busybox applets ]\n");
-                for (String applet : RootTools.getBusyBoxApplets("/data/data/stericson.busybox.donate/files/bb"))
+                for (String applet : RootTools.getBusyBoxApplets("/data/data/stericson.busybox/files/bb/busybox"))
                 {
                     visualUpdate(TestHandler.ACTION_DISPLAY, applet + " k\n\n");
                 }
@@ -267,8 +267,24 @@ public class SanityCheckRootTools extends Activity
                 e1.printStackTrace();
             }
 
+            visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing GetBusyBox version in a special directory!");
+            try
+            {
+
+                visualUpdate(TestHandler.ACTION_DISPLAY, "[ Testing GetBusyBox version in a special directory! ]\n");
+                String v = RootTools.getBusyBoxVersion("/data/data/stericson.busybox/files/bb/");
+
+                visualUpdate(TestHandler.ACTION_DISPLAY, v + " k\n\n");
+
+            }
+            catch (Exception e1)
+            {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
             visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing getFilePermissionsSymlinks");
-            Permissions permissions = RootTools.getFilePermissionsSymlinks("/system/bin/busybox");
+            Permissions permissions = RootTools.getFilePermissionsSymlinks("/system/xbin/busybox");
             visualUpdate(TestHandler.ACTION_DISPLAY, "[ Checking busybox permissions and symlink ]\n");
 
             if (permissions != null)
@@ -285,10 +301,37 @@ public class SanityCheckRootTools extends Activity
                 visualUpdate(TestHandler.ACTION_DISPLAY, "Permissions == null k\n\n");
             }
 
+            Shell shell;
+
+            visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing output capture");
+            visualUpdate(TestHandler.ACTION_DISPLAY, "[ busybox ash --help ]\n");
+
+            try
+            {
+                shell = RootTools.getShell(true);
+                CommandCapture cmd = new CommandCapture(
+                        0,
+                        "busybox ash --help")
+                {
+
+                    @Override
+                    public void commandOutput(int id, String line)
+                    {
+                        visualUpdate(TestHandler.ACTION_DISPLAY, line + "\n");
+                        super.commandOutput(id, line);
+                    }
+                };
+                shell.add(cmd);
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
             visualUpdate(TestHandler.ACTION_PDISPLAY, "Switching RootContext - SYSTEM_APP");
             visualUpdate(TestHandler.ACTION_DISPLAY, "[ Switching Root Context - SYSTEM_APP ]\n");
 
-            Shell shell;
             try
             {
                 shell = RootTools.getShell(true, Shell.ShellContext.SYSTEM_APP);
@@ -347,7 +390,7 @@ public class SanityCheckRootTools extends Activity
             {
                 shell = RootTools.getShell(true);
 
-                CommandCapture cmd = new CommandCapture(42, false, "find /")
+                CommandCapture cmd = new CommandCapture(42, false, "echo done")
                 {
 
                     boolean _catch = false;
@@ -355,12 +398,13 @@ public class SanityCheckRootTools extends Activity
                     @Override
                     public void commandOutput(int id, String line)
                     {
-                        super.commandOutput(id, line);
-
                         if (_catch)
                         {
                             RootTools.log("CAUGHT!!!");
                         }
+
+                        super.commandOutput(id, line);
+
                     }
 
                     @Override

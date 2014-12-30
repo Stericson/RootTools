@@ -681,6 +681,8 @@ public final class RootToolsInternalMethods
                         }
 
                         RootTools.log(line);
+
+                        super.commandOutput(id, line);
                     }
                 };
 
@@ -827,10 +829,13 @@ public final class RootToolsInternalMethods
                 {
                     if (id == Constants.BBV)
                     {
+                        RootTools.log("Version Output: " + line);
+
                         if (line.startsWith("BusyBox") && InternalVariables.busyboxVersion.equals(""))
                         {
                             String[] temp = line.split(" ");
                             InternalVariables.busyboxVersion = temp[1];
+                            RootTools.log("Found Version: " + InternalVariables.busyboxVersion);
                         }
                     }
                 }
@@ -838,15 +843,17 @@ public final class RootToolsInternalMethods
 
             //try without root first
             RootTools.log("Getting BusyBox Version without root");
-            Shell.startShell().add(command);
-            commandWait(Shell.startShell(), command);
+            Shell shell = RootTools.getShell(false);
+            shell.add(command);
+            commandWait(shell, command);
 
             if (InternalVariables.busyboxVersion.length() <= 0)
             {
-                //try without root first
                 RootTools.log("Getting BusyBox Version with root");
-                Shell.startRootShell().add(command);
-                commandWait(Shell.startRootShell(), command);
+                Shell rootShell = RootTools.getShell(true);
+                //Now look for it...
+                rootShell.add(command);
+                commandWait(rootShell, command);
             }
 
         }
@@ -913,7 +920,7 @@ public final class RootToolsInternalMethods
                 {
                     if (id == Constants.GI)
                     {
-                        if (!line.trim().equals("") && Character.isDigit((char) line.trim().substring(0, 1).toCharArray()[0]))
+                        if (!line.trim().equals("") && Character.isDigit(line.trim().substring(0, 1).toCharArray()[0]))
                         {
                             InternalVariables.inode = line.trim().split(" ")[0];
                         }
@@ -1769,20 +1776,20 @@ public final class RootToolsInternalMethods
     }
 
     /**
-     * This will launch the Android market looking for SuperUser
+     * This will launch the Play Store looking for SuperUser
      *
      * @param activity pass in your Activity
      */
     public void offerSuperUser(Activity activity)
     {
-        RootTools.log("Launching Market for SuperUser");
+        RootTools.log("Launching Play Store for SuperSU");
         Intent i = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=com.noshufou.android.su"));
+                Uri.parse("market://details?id=eu.chainfire.supersu"));
         activity.startActivity(i);
     }
 
     /**
-     * This will launch the Android market looking for SuperUser, but will return the intent fired
+     * This will launch the Play Store looking for SuperSU, but will return the intent fired
      * and starts the activity with startActivityForResult
      *
      * @param activity    pass in your Activity
@@ -1791,9 +1798,9 @@ public final class RootToolsInternalMethods
      */
     public Intent offerSuperUser(Activity activity, int requestCode)
     {
-        RootTools.log("Launching Market for SuperUser");
+        RootTools.log("Launching Play Store for SuperSU");
         Intent i = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=com.noshufou.android.su"));
+                Uri.parse("market://details?id=eu.chainfire.supersu"));
         activity.startActivityForResult(i, requestCode);
         return i;
     }
