@@ -1776,20 +1776,20 @@ public final class RootToolsInternalMethods
     }
 
     /**
-     * This will launch the Android market looking for SuperUser
+     * This will launch the Play Store looking for SuperUser
      *
      * @param activity pass in your Activity
      */
     public void offerSuperUser(Activity activity)
     {
-        RootTools.log("Launching Market for SuperUser");
+        RootTools.log("Launching Play Store for SuperSU");
         Intent i = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=com.noshufou.android.su"));
+                Uri.parse("market://details?id=eu.chainfire.supersu"));
         activity.startActivity(i);
     }
 
     /**
-     * This will launch the Android market looking for SuperUser, but will return the intent fired
+     * This will launch the Play Store looking for SuperSU, but will return the intent fired
      * and starts the activity with startActivityForResult
      *
      * @param activity    pass in your Activity
@@ -1798,9 +1798,9 @@ public final class RootToolsInternalMethods
      */
     public Intent offerSuperUser(Activity activity, int requestCode)
     {
-        RootTools.log("Launching Market for SuperUser");
+        RootTools.log("Launching Play Store for SuperSU");
         Intent i = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=com.noshufou.android.su"));
+                Uri.parse("market://details?id=eu.chainfire.supersu"));
         activity.startActivityForResult(i, requestCode);
         return i;
     }
