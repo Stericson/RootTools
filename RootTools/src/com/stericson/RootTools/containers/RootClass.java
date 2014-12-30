@@ -76,12 +76,18 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
 
         private final String AVOIDDIRPATH = "stericson" + File.separator + "RootTools" + File.separator;
         private List<File> classFiles;
+        private String strPath = "app/src/main/java/";
 
         public AnnotationsFinder() throws IOException
         {
             System.out.println("Discovering root class annotations...");
             classFiles = new ArrayList<File>();
-            lookup(new File("src"), classFiles);
+
+            File sourcePath = new File(strPath);
+            if (!sourcePath.exists()) {
+                strPath = "src/";
+            }
+            lookup(new File(strPath), classFiles);
             System.out.println("Done discovering annotations. Building jar file.");
             File builtPath = getBuiltPath();
             if (null != builtPath)
@@ -160,7 +166,12 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
                 {
                 }
 
-                File rawFolder = new File("res/raw");
+                String resRaw = "app/src/main/res/raw/";
+                File rawFolder = new File("app/src/main/res/raw/");
+                if (!rawFolder.isDirectory()) {
+                    resRaw = "res/raw/";
+                    rawFolder = new File("res/raw/");
+                }
                 if (!rawFolder.exists())
                 {
                     rawFolder.mkdirs();
@@ -172,7 +183,7 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
                 {
                     cmd = new String[]{
                             "cmd", "/C",
-                            "dx --dex --output=res/raw/anbuild.dex "
+                            "dx --dex --output=" + resRaw + "anbuild.dex "
                                     + builtPath + File.separator + "anbuild.jar"
                     };
                 }
@@ -181,7 +192,7 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
                     cmd = new String[]{
                             getPathToDx(),
                             "--dex",
-                            "--output=res/raw/anbuild.dex",
+                            "--output=" + resRaw + "anbuild.dex",
                             builtPath + File.separator + "anbuild.jar"
                     };
                 }
@@ -202,10 +213,14 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
 
         protected void lookup(File path, List<File> fileList)
         {
-            String desourcedPath = path.toString().replace("src/", "");
+            String desourcedPath = path.toString().replace(strPath, "");
+            System.out.println(path.getAbsolutePath());
             File[] files = path.listFiles();
             for (File file : files)
             {
+
+                System.out.println("Checking " + file.getAbsolutePath());
+
                 if (file.isDirectory())
                 {
                     if (-1 == file.getAbsolutePath().indexOf(AVOIDDIRPATH))
@@ -221,6 +236,7 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
                         {
                             final String fileNamePrefix = file.getName().replace(".java", "");
                             final File compiledPath = new File(getBuiltPath().toString() + File.separator + desourcedPath);
+                            System.out.println(compiledPath.getAbsolutePath());
                             File[] classAndInnerClassFiles = compiledPath.listFiles(new FilenameFilter()
                             {
                                 @Override
@@ -248,6 +264,9 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
             {
                 BufferedReader reader = new BufferedReader(new FileReader(file));
                 String line;
+
+                System.out.println("Checking " + file.getAbsolutePath());
+
                 while (null != (line = reader.readLine()))
                 {
                     switch (readState)
@@ -374,6 +393,11 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */
                 {
                     foundPath = eclipsePath;
                 }
+                File studioPath = new File("app" + File.separator + "build" + File.separator + "intermediates" + File.separator + "classes" + File.separator + "debug");
+                if (studioPath.isDirectory()) {
+                    foundPath = studioPath;
+                }
+
             }
 
             return foundPath;
