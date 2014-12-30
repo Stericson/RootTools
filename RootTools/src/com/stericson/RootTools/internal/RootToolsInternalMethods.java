@@ -913,7 +913,7 @@ public final class RootToolsInternalMethods
                 {
                     if (id == Constants.GI)
                     {
-                        if (!line.trim().equals("") && Character.isDigit((char) line.trim().substring(0, 1).toCharArray()[0]))
+                        if (!line.trim().equals("") && Character.isDigit(line.trim().substring(0, 1).toCharArray()[0]))
                         {
                             InternalVariables.inode = line.trim().split(" ")[0];
                         }

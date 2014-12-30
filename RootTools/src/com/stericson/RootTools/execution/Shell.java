@@ -28,9 +28,6 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import android.content.Context;
-import android.provider.DocumentsContract;
-import android.util.Log;
-
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 
@@ -75,6 +72,10 @@ public class Shell
     private static Shell shell = null;
     private static Shell customShell = null;
 
+    private static String[] suVersion = new String[] {
+            null, null
+    };
+
     //the default context for root shells...
     public static ShellContext defaultContext = ShellContext.NORMAL;
 
@@ -86,12 +87,14 @@ public class Shell
     private String error = "";
 
     private final Process proc;
-    private final BufferedReader in;
-    private final OutputStreamWriter out;
+    private final BufferedReader inputStream;
+    private final BufferedReader errorStream;
+    private final OutputStreamWriter outputStream;
     private final List<Command> commands = new ArrayList<Command>();
 
     //indicates whether or not to close the shell
     private boolean close = false;
+    private Boolean isSELinuxEnforcing = null;
 
     public boolean isExecuting = false;
     public boolean isReading = false;
@@ -121,12 +124,34 @@ public class Shell
         }
         else
         {
+            String display = getSuVersion(false);
+            String internal = getSuVersion(true);
+
             //only done for root shell...
-            this.proc = Runtime.getRuntime().exec(cmd + " --context " + this.shellContext.getValue());
+            //Right now only SUPERSU supports the --context switch
+            if(isSELinuxEnforcing() &&
+                (display != null) &&
+                (internal != null) &&
+                (display.endsWith("SUPERSU")) &&
+                (Integer.valueOf(internal) >= 190))
+            {
+                cmd += " --context " + this.shellContext.getValue();
+            }
+            else
+            {
+                RootTools.log("Su binary --context switch not supported!");
+                RootTools.log("Su binary display version: " + display);
+                RootTools.log("Su binary internal version: " + internal);
+                RootTools.log("SELinuxEnforcing: " + isSELinuxEnforcing());
+            }
+
+            this.proc = Runtime.getRuntime().exec(cmd);
+
         }
 
-        this.in = new BufferedReader(new InputStreamReader(this.proc.getInputStream(), "UTF-8"));
-        this.out = new OutputStreamWriter(this.proc.getOutputStream(), "UTF-8");
+        this.inputStream = new BufferedReader(new InputStreamReader(this.proc.getInputStream(), "UTF-8"));
+        this.errorStream = new BufferedReader(new InputStreamReader(this.proc.getErrorStream(), "UTF-8"));
+        this.outputStream = new OutputStreamWriter(this.proc.getOutputStream(), "UTF-8");
 
         /**
          * Thread responsible for carrying out the requested operations
@@ -160,8 +185,9 @@ public class Shell
                 {
                 }
 
-                closeQuietly(this.in);
-                closeQuietly(this.out);
+                closeQuietly(this.inputStream);
+                closeQuietly(this.errorStream);
+                closeQuietly(this.outputStream);
 
                 throw new TimeoutException(this.error);
             }
@@ -179,8 +205,9 @@ public class Shell
                 {
                 }
 
-                closeQuietly(this.in);
-                closeQuietly(this.out);
+                closeQuietly(this.inputStream);
+                closeQuietly(this.errorStream);
+                closeQuietly(this.outputStream);
 
                 throw new RootDeniedException("Root Access Denied");
             }
@@ -400,6 +427,92 @@ public class Shell
         }
     }
 
+    /**
+     * From libsuperuser.
+     *
+     * <p>
+     * Detects the version of the su binary installed (if any), if supported
+     * by the binary. Most binaries support two different version numbers,
+     * the public version that is displayed to users, and an internal
+     * version number that is used for version number comparisons. Returns
+     * null if su not available or retrieving the version isn't supported.
+     * </p>
+     * <p>
+     * Note that su binary version and GUI (APK) version can be completely
+     * different.
+     * </p>
+     * <p>
+     * This function caches its result to improve performance on multiple
+     * calls
+     * </p>
+     *
+     * @param internal Request human-readable version or application
+     *            internal version
+     * @return String containing the su version or null
+     */
+    private synchronized String getSuVersion(boolean internal) {
+        int idx = internal ? 0 : 1;
+        if (suVersion[idx] == null) {
+            String version = null;
+
+            // Replace libsuperuser:Shell.run with manual process execution
+            Process process;
+            try {
+                process = Runtime.getRuntime().exec(internal ? "su -V" : "su -v", null);
+                process.waitFor();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+            // From libsuperuser:StreamGobbler
+            List<String> stdout = new ArrayList<String>();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            try {
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    stdout.add(line);
+                }
+            } catch (IOException e) {
+            }
+            // make sure our stream is closed and resources will be freed
+            try {
+                reader.close();
+            } catch (IOException e) {
+            }
+
+            process.destroy();
+
+            List<String> ret = stdout;
+
+            if (ret != null) {
+                for (String line : ret) {
+                    if (!internal) {
+                        if (line.contains(".")) {
+                            version = line;
+                            break;
+                        }
+                    } else {
+                        try {
+                            if (Integer.parseInt(line) > 0) {
+                                version = line;
+                                break;
+                            }
+                        } catch (NumberFormatException e) {
+                        }
+                    }
+                }
+            }
+
+            suVersion[idx] = version;
+        }
+        return suVersion[idx];
+    }
+
     public static boolean isShellOpen()
     {
         return Shell.shell == null;
@@ -418,6 +531,51 @@ public class Shell
     public static boolean isAnyShellOpen()
     {
         return Shell.shell != null || Shell.rootShell != null || Shell.customShell != null;
+    }
+
+    /**
+     * From libsuperuser.
+     *
+     * Detect if SELinux is set to enforcing, caches result
+     *
+     * @return true if SELinux set to enforcing, or false in the case of
+     *         permissive or not present
+     */
+    public synchronized boolean isSELinuxEnforcing() {
+        if (isSELinuxEnforcing == null) {
+            Boolean enforcing = null;
+
+            // First known firmware with SELinux built-in was a 4.2 (17)
+            // leak
+            if (android.os.Build.VERSION.SDK_INT >= 17) {
+
+                // Detect enforcing through sysfs, not always present
+                File f = new File("/sys/fs/selinux/enforce");
+                if (f.exists()) {
+                    try {
+                        InputStream is = new FileInputStream("/sys/fs/selinux/enforce");
+                        try {
+                            enforcing = (is.read() == '1');
+                        } finally {
+                            is.close();
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+
+                // 4.4+ builds are enforcing by default, take the gamble
+                if (enforcing == null) {
+                    enforcing = (android.os.Build.VERSION.SDK_INT >= 19);
+                }
+            }
+
+            if (enforcing == null) {
+                enforcing = false;
+            }
+
+            isSELinuxEnforcing = enforcing;
+        }
+        return isSELinuxEnforcing;
     }
 
     /**
@@ -481,10 +639,10 @@ public class Shell
                         cmd.startExecution();
                         RootTools.log("Executing: " + cmd.getCommand() + " with context: " + shellContext);
 
-                        out.write(cmd.getCommand());
+                        outputStream.write(cmd.getCommand());
                         String line = "\necho " + token + " " + totalExecuted + " $?\n";
-                        out.write(line);
-                        out.flush();
+                        outputStream.write(line);
+                        outputStream.flush();
                         write++;
                         totalExecuted++;
                     }
@@ -494,8 +652,8 @@ public class Shell
                          * close the thread, the shell is closing.
                          */
                         isExecuting = false;
-                        out.write("\nexit 0\n");
-                        out.flush();
+                        outputStream.write("\nexit 0\n");
+                        outputStream.flush();
                         RootTools.log("Closing shell");
                         return;
                     }
@@ -512,7 +670,7 @@ public class Shell
             finally
             {
                 write = 0;
-                closeQuietly(out);
+                closeQuietly(outputStream);
             }
         }
     };
@@ -535,6 +693,8 @@ public class Shell
 
     /**
      * Runnable to monitor the responses from the open shell.
+     *
+     * This include the output and error stream
      */
     private Runnable output = new Runnable()
     {
@@ -547,13 +707,13 @@ public class Shell
                 while (!close)
                 {
                     isReading = false;
-                    String line = in.readLine();
+                    String outputLine = inputStream.readLine();
                     isReading = true;
 
                     /**
-                     * If we recieve EOF then the shell closed
+                     * If we recieve EOF then the shell closed?
                      */
-                    if (line == null)
+                    if (outputLine == null)
                     {
                         break;
                     }
@@ -578,27 +738,29 @@ public class Shell
                      *
                      * if the token is present then the command has finished execution.
                      */
-                    int pos = line.indexOf(token);
+                    int pos = -1;
 
+                    pos = outputLine.indexOf(token);
 
                     if (pos == -1)
                     {
                         /**
                          * send the output for the implementer to process
                          */
-                        command.output(command.id, line);
+                        command.output(command.id, outputLine);
                     }
-                    if (pos > 0)
+                    else if (pos > 0)
                     {
                         /**
                          * token is suffix of output, send output part to implementer
                          */
-                        command.output(command.id, line.substring(0, pos));
+                        command.output(command.id, outputLine.substring(0, pos));
                     }
+
                     if (pos >= 0)
                     {
-                        line = line.substring(pos);
-                        String fields[] = line.split(" ");
+                        outputLine = outputLine.substring(pos);
+                        String fields[] = outputLine.split(" ");
 
                         if (fields.length >= 2 && fields[1] != null)
                         {
@@ -624,6 +786,8 @@ public class Shell
 
                             if (id == totalRead)
                             {
+                                processErrors(command);
+
                                 command.setExitCode(exitCode);
                                 command.commandFinished();
                                 command = null;
@@ -637,6 +801,7 @@ public class Shell
                 }
 
                 RootTools.log("Read all output");
+
                 try
                 {
                     proc.waitFor();
@@ -646,8 +811,9 @@ public class Shell
                 {
                 }
 
-                closeQuietly(out);
-                closeQuietly(in);
+                closeQuietly(outputStream);
+                closeQuietly(errorStream);
+                closeQuietly(inputStream);
 
                 while (read < commands.size())
                 {
@@ -676,6 +842,50 @@ public class Shell
             }
         }
     };
+
+    public void processErrors(Command command)
+    {
+        try
+        {
+            while (errorStream.ready())
+            {
+                String line = errorStream.readLine();
+
+                /**
+                 * If we recieve EOF then the shell closed?
+                 */
+                if (line == null)
+                {
+                    break;
+                }
+
+                if (command == null)
+                {
+                    if (read >= commands.size())
+                    {
+                        if (close)
+                        {
+                            break;
+                        }
+
+                        continue;
+                    }
+
+                    command = commands.get(read);
+                }
+
+                /**
+                 * send the output for the implementer to process
+                 */
+                command.output(command.id, line);
+
+            }
+        }
+        catch (Exception e)
+        {
+            RootTools.log(e.getMessage(), 2, e);
+        }
+    }
 
     public static void runRootCommand(Command command) throws IOException, TimeoutException, RootDeniedException
     {
@@ -885,12 +1095,12 @@ public class Shell
              */
             try
             {
-                shell.out.write("echo Started\n");
-                shell.out.flush();
+                shell.outputStream.write("echo Started\n");
+                shell.outputStream.flush();
 
                 while (true)
                 {
-                    String line = shell.in.readLine();
+                    String line = shell.inputStream.readLine();
 
                     if (line == null)
                     {
@@ -946,9 +1156,9 @@ public class Shell
                 }
                 field.setAccessible(true);
                 int pid = (Integer) field.get(shell.proc);
-                shell.out.write("(echo -17 > /proc/" + pid + "/oom_adj) &> /dev/null\n");
-                shell.out.write("(echo -17 > /proc/$$/oom_adj) &> /dev/null\n");
-                shell.out.flush();
+                shell.outputStream.write("(echo -17 > /proc/" + pid + "/oom_adj) &> /dev/null\n");
+                shell.outputStream.write("(echo -17 > /proc/$$/oom_adj) &> /dev/null\n");
+                shell.outputStream.flush();
             }
             catch (Exception e)
             {

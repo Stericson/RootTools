@@ -220,7 +220,7 @@ public class SanityCheckRootTools extends Activity
 
             visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing getBusyBoxVersion");
             visualUpdate(TestHandler.ACTION_DISPLAY, "[ Checking busybox version ]\n");
-            visualUpdate(TestHandler.ACTION_DISPLAY, RootTools.getBusyBoxVersion("/system/bin/") + " k\n\n");
+            visualUpdate(TestHandler.ACTION_DISPLAY, RootTools.getBusyBoxVersion("/system/xbin/") + " k\n\n");
 
             try
             {
@@ -268,7 +268,7 @@ public class SanityCheckRootTools extends Activity
             }
 
             visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing getFilePermissionsSymlinks");
-            Permissions permissions = RootTools.getFilePermissionsSymlinks("/system/bin/busybox");
+            Permissions permissions = RootTools.getFilePermissionsSymlinks("/system/xbin/busybox");
             visualUpdate(TestHandler.ACTION_DISPLAY, "[ Checking busybox permissions and symlink ]\n");
 
             if (permissions != null)
@@ -285,10 +285,37 @@ public class SanityCheckRootTools extends Activity
                 visualUpdate(TestHandler.ACTION_DISPLAY, "Permissions == null k\n\n");
             }
 
+            Shell shell;
+
+            visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing output capture");
+            visualUpdate(TestHandler.ACTION_DISPLAY, "[ busybox ash --help ]\n");
+
+            try
+            {
+                shell = RootTools.getShell(true);
+                CommandCapture cmd = new CommandCapture(
+                        0,
+                        "busybox ash --help")
+                {
+
+                    @Override
+                    public void commandOutput(int id, String line)
+                    {
+                        visualUpdate(TestHandler.ACTION_DISPLAY, line + "\n");
+                        super.commandOutput(id, line);
+                    }
+                };
+                shell.add(cmd);
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
             visualUpdate(TestHandler.ACTION_PDISPLAY, "Switching RootContext - SYSTEM_APP");
             visualUpdate(TestHandler.ACTION_DISPLAY, "[ Switching Root Context - SYSTEM_APP ]\n");
 
-            Shell shell;
             try
             {
                 shell = RootTools.getShell(true, Shell.ShellContext.SYSTEM_APP);
