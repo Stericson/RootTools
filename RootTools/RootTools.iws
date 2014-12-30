@@ -82,13 +82,14 @@
       <file leaf-file-name="Shell.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/Shell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.164859" vertical-offset="13903" max-vertical-offset="21793">
-              <caret line="788" column="38" selection-start-line="788" selection-start-column="0" selection-end-line="789" selection-end-column="0" />
+            <state vertical-scroll-proportion="9.151844" vertical-offset="10240" max-vertical-offset="21489">
+              <caret line="791" column="0" selection-start-line="791" selection-start-column="0" selection-end-line="791" selection-end-column="0" />
               <folding>
-                <element signature="e#13794#13802#0" expanded="true" />
-                <element signature="e#17338#20385#0" expanded="true" />
-                <element signature="e#20448#20656#0" expanded="true" />
-                <element signature="e#20848#25270#0" expanded="true" />
+                <element signature="e#3090#3099#0" expanded="true" />
+                <element signature="e#13838#13846#0" expanded="true" />
+                <element signature="e#17382#20429#0" expanded="true" />
+                <element signature="e#20492#20700#0" expanded="true" />
+                <element signature="e#20892#25314#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,8 +98,18 @@
       <file leaf-file-name="Command.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/Command.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4745" max-vertical-offset="6821">
-              <caret line="288" column="13" selection-start-line="288" selection-start-column="13" selection-end-line="288" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5510" max-vertical-offset="6821">
+              <caret line="310" column="0" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaCommandCapture.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/JavaCommandCapture.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="1045">
+              <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -107,33 +118,10 @@
       <file leaf-file-name="SanityCheckRootTools.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootToolsTests/SanityCheckRootTools.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4654" max-vertical-offset="8740">
-              <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="6417" max-vertical-offset="9063">
+              <caret line="392" column="77" selection-start-line="392" selection-start-column="77" selection-end-line="392" selection-end-column="77" />
               <folding>
-                <marker date="1419903037000" expanded="false" signature="0:1006" placeholder="/.../" />
-                <marker date="1419903037000" expanded="false" signature="1054:1824" placeholder="..." />
-                <marker date="1419903037000" expanded="true" signature="2055:4156" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="4206:4428" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="4265:4350" placeholder="() -&gt; { " />
-                <marker date="1419903037000" expanded="true" signature="4396:4420" placeholder=" }" />
-                <marker date="1419903037000" expanded="true" signature="4434:4541" placeholder="//..." />
-                <marker date="1419903037000" expanded="true" signature="4597:16601" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="4709:4752" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="4788:16240" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="4860:4958" placeholder="//..." />
-                <marker date="1419903037000" expanded="true" signature="11293:11588" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="11413:11570" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="12169:12464" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="12289:12446" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="13046:13341" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="13166:13323" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="13959:16083" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="14124:14347" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="14472:15207" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="15330:16065" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="16309:16595" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="16653:17770" placeholder="{...}" />
-                <marker date="1419903037000" expanded="true" signature="17030:17764" placeholder="{...}" />
+                <element signature="e#4265#4420#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,7 +130,7 @@
       <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="380">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
               <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
               <folding />
             </state>
@@ -152,7 +140,7 @@
       <file leaf-file-name="InternalVariables.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/InternalVariables.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1387">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="874">
               <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
               <folding />
             </state>
@@ -162,8 +150,8 @@
       <file leaf-file-name="RootTools.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/RootTools.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5643" max-vertical-offset="16644">
-              <caret line="339" column="39" selection-start-line="339" selection-start-column="39" selection-end-line="339" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4198" max-vertical-offset="16644">
+              <caret line="268" column="38" selection-start-line="268" selection-start-column="38" selection-end-line="268" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -172,8 +160,8 @@
       <file leaf-file-name="RootToolsInternalMethods.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/RootToolsInternalMethods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="33705" max-vertical-offset="34352">
-              <caret line="1825" column="42" selection-start-line="1825" selection-start-column="42" selection-end-line="1825" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="14553" max-vertical-offset="34485">
+              <caret line="853" column="0" selection-start-line="853" selection-start-column="0" selection-end-line="853" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -192,8 +180,8 @@
       <file leaf-file-name="CommandCapture.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/CommandCapture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="494" max-vertical-offset="1444">
-              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="431" max-vertical-offset="1064">
+              <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -210,9 +198,10 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/com/stericson/RootTools/RootTools.java" />
-        <option value="$PROJECT_DIR$/src/com/stericson/RootTools/execution/Command.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/stericson/RootTools/Constants.java" />
+        <option value="$PROJECT_DIR$/src/com/stericson/RootTools/execution/Command.java" />
+        <option value="$PROJECT_DIR$/src/com/stericson/RootTools/execution/CommandCapture.java" />
         <option value="$PROJECT_DIR$/src/com/stericson/RootToolsTests/SanityCheckRootTools.java" />
         <option value="$PROJECT_DIR$/src/com/stericson/RootTools/internal/RootToolsInternalMethods.java" />
         <option value="$PROJECT_DIR$/src/com/stericson/RootTools/execution/Shell.java" />
@@ -304,6 +293,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="stericson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RootTools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RootTools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stericson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="RootTools" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -319,6 +330,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stericson" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -341,6 +356,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stericson" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -546,12 +565,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32802126" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32802126" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -561,10 +580,10 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32802126" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32802126" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32802126" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32802126" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3283046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3283046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32802126" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -600,30 +619,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/Shell.java</url>
-          <line>1124</line>
+          <line>1110</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/stericson/RootToolsTests/SanityCheckRootTools.java</url>
-          <line>355</line>
+          <url>file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/RootToolsInternalMethods.java</url>
+          <line>852</line>
           <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/stericson/RootToolsTests/SanityCheckRootTools.java</url>
-          <line>294</line>
-          <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/stericson/RootToolsTests/SanityCheckRootTools.java</url>
-          <line>329</line>
-          <properties />
-          <option name="timeStamp" value="27" />
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="30" />
+      <option name="time" value="37" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -631,14 +638,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="380">
-          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/InternalVariables.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1387">
@@ -684,10 +683,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21261">
           <caret line="552" column="29" selection-start-line="552" selection-start-column="29" selection-end-line="552" selection-end-column="29" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -697,30 +697,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="5130" max-vertical-offset="9006">
           <caret line="270" column="60" selection-start-line="270" selection-start-column="60" selection-end-line="270" selection-end-column="60" />
           <folding>
-            <marker date="1419903037000" expanded="false" signature="0:1006" placeholder="/.../" />
-            <marker date="1419903037000" expanded="false" signature="1054:1824" placeholder="..." />
-            <marker date="1419903037000" expanded="true" signature="2055:4156" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4206:4428" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4265:4350" placeholder="() -&gt; { " />
-            <marker date="1419903037000" expanded="true" signature="4396:4420" placeholder=" }" />
-            <marker date="1419903037000" expanded="true" signature="4434:4541" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="4597:16601" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4709:4752" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4788:16240" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4860:4958" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="11293:11588" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="11413:11570" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12169:12464" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12289:12446" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13046:13341" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13166:13323" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13959:16083" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14124:14347" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14472:15207" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="15330:16065" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16309:16595" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16653:17770" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="17030:17764" placeholder="{...}" />
+            <element signature="e#4265#4420#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -778,10 +755,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21261">
           <caret line="552" column="29" selection-start-line="552" selection-start-column="29" selection-end-line="552" selection-end-column="29" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -791,30 +769,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="5130" max-vertical-offset="9006">
           <caret line="270" column="60" selection-start-line="270" selection-start-column="60" selection-end-line="270" selection-end-column="60" />
           <folding>
-            <marker date="1419903037000" expanded="false" signature="0:1006" placeholder="/.../" />
-            <marker date="1419903037000" expanded="false" signature="1054:1824" placeholder="..." />
-            <marker date="1419903037000" expanded="true" signature="2055:4156" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4206:4428" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4265:4350" placeholder="() -&gt; { " />
-            <marker date="1419903037000" expanded="true" signature="4396:4420" placeholder=" }" />
-            <marker date="1419903037000" expanded="true" signature="4434:4541" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="4597:16601" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4709:4752" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4788:16240" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4860:4958" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="11293:11588" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="11413:11570" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12169:12464" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12289:12446" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13046:13341" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13166:13323" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13959:16083" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14124:14347" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14472:15207" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="15330:16065" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16309:16595" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16653:17770" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="17030:17764" placeholder="{...}" />
+            <element signature="e#4265#4420#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -872,10 +827,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="18335">
           <caret line="825" column="31" selection-start-line="825" selection-start-column="31" selection-end-line="825" selection-end-column="31" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -885,30 +841,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="6232" max-vertical-offset="9006">
           <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
           <folding>
-            <marker date="1419903037000" expanded="false" signature="0:1006" placeholder="/.../" />
-            <marker date="1419903037000" expanded="false" signature="1054:1824" placeholder="..." />
-            <marker date="1419903037000" expanded="true" signature="2055:4156" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4206:4428" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4265:4350" placeholder="() -&gt; { " />
-            <marker date="1419903037000" expanded="true" signature="4396:4420" placeholder=" }" />
-            <marker date="1419903037000" expanded="true" signature="4434:4541" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="4597:16601" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4709:4752" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4788:16240" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4860:4958" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="11293:11588" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="11413:11570" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12169:12464" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12289:12446" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13046:13341" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13166:13323" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13959:16083" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14124:14347" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14472:15207" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="15330:16065" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16309:16595" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16653:17770" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="17030:17764" placeholder="{...}" />
+            <element signature="e#4265#4420#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -966,10 +899,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="11723" max-vertical-offset="13452">
           <caret line="648" column="0" selection-start-line="648" selection-start-column="0" selection-end-line="648" selection-end-column="0" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -979,30 +913,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="5073" max-vertical-offset="7543">
           <caret line="267" column="27" selection-start-line="267" selection-start-column="27" selection-end-line="267" selection-end-column="27" />
           <folding>
-            <marker date="1419903037000" expanded="false" signature="0:1006" placeholder="/.../" />
-            <marker date="1419903037000" expanded="false" signature="1054:1824" placeholder="..." />
-            <marker date="1419903037000" expanded="true" signature="2055:4156" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4206:4428" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4265:4350" placeholder="() -&gt; { " />
-            <marker date="1419903037000" expanded="true" signature="4396:4420" placeholder=" }" />
-            <marker date="1419903037000" expanded="true" signature="4434:4541" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="4597:16601" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4709:4752" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4788:16240" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4860:4958" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="11293:11588" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="11413:11570" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12169:12464" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12289:12446" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13046:13341" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13166:13323" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13959:16083" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14124:14347" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14472:15207" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="15330:16065" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16309:16595" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16653:17770" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="17030:17764" placeholder="{...}" />
+            <element signature="e#4265#4420#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1036,10 +947,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="10544" max-vertical-offset="12540">
           <caret line="618" column="20" selection-start-line="618" selection-start-column="20" selection-end-line="618" selection-end-column="20" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1049,30 +961,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="5016" max-vertical-offset="7543">
           <caret line="264" column="12" selection-start-line="264" selection-start-column="12" selection-end-line="264" selection-end-column="12" />
           <folding>
-            <marker date="1419903037000" expanded="false" signature="0:1006" placeholder="/.../" />
-            <marker date="1419903037000" expanded="false" signature="1054:1824" placeholder="..." />
-            <marker date="1419903037000" expanded="true" signature="2055:4156" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4206:4428" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4265:4350" placeholder="() -&gt; { " />
-            <marker date="1419903037000" expanded="true" signature="4396:4420" placeholder=" }" />
-            <marker date="1419903037000" expanded="true" signature="4434:4541" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="4597:16601" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4709:4752" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4788:16240" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4860:4958" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="11293:11588" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="11413:11570" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12169:12464" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12289:12446" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13046:13341" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13166:13323" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13959:16083" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14124:14347" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14472:15207" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="15330:16065" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16309:16595" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16653:17770" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="17030:17764" placeholder="{...}" />
+            <element signature="e#4265#4420#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1106,10 +995,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12540">
           <caret line="531" column="50" selection-start-line="531" selection-start-column="50" selection-end-line="531" selection-end-column="50" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1119,35 +1009,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="9253" max-vertical-offset="12616">
           <caret line="531" column="50" selection-start-line="531" selection-start-column="50" selection-end-line="531" selection-end-column="50" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/CommandCapture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="798">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
-          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/InternalVariables.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="874">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1161,70 +1028,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/RootTools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5509" max-vertical-offset="16644">
-          <caret line="339" column="39" selection-start-line="339" selection-start-column="39" selection-end-line="339" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4198" max-vertical-offset="16644">
+          <caret line="268" column="38" selection-start-line="268" selection-start-column="38" selection-end-line="268" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/Command.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4745" max-vertical-offset="6821">
-          <caret line="288" column="13" selection-start-line="288" selection-start-column="13" selection-end-line="288" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5510" max-vertical-offset="6821">
+          <caret line="310" column="0" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/CommandCapture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="431" max-vertical-offset="1064">
+          <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/InternalVariables.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="874">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
+          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/JavaCommandCapture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="1045">
+          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/internal/RootToolsInternalMethods.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="33705" max-vertical-offset="34352">
-          <caret line="1825" column="42" selection-start-line="1825" selection-start-column="42" selection-end-line="1825" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="14553" max-vertical-offset="34485">
+          <caret line="853" column="0" selection-start-line="853" selection-start-column="0" selection-end-line="853" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/stericson/RootToolsTests/SanityCheckRootTools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4654" max-vertical-offset="8740">
-          <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="6417" max-vertical-offset="9063">
+          <caret line="392" column="77" selection-start-line="392" selection-start-column="77" selection-end-line="392" selection-end-column="77" />
           <folding>
-            <marker date="1419903037000" expanded="false" signature="0:1006" placeholder="/.../" />
-            <marker date="1419903037000" expanded="false" signature="1054:1824" placeholder="..." />
-            <marker date="1419903037000" expanded="true" signature="2055:4156" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4206:4428" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4265:4350" placeholder="() -&gt; { " />
-            <marker date="1419903037000" expanded="true" signature="4396:4420" placeholder=" }" />
-            <marker date="1419903037000" expanded="true" signature="4434:4541" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="4597:16601" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4709:4752" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4788:16240" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="4860:4958" placeholder="//..." />
-            <marker date="1419903037000" expanded="true" signature="11293:11588" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="11413:11570" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12169:12464" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="12289:12446" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13046:13341" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13166:13323" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="13959:16083" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14124:14347" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="14472:15207" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="15330:16065" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16309:16595" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="16653:17770" placeholder="{...}" />
-            <marker date="1419903037000" expanded="true" signature="17030:17764" placeholder="{...}" />
+            <element signature="e#4265#4420#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/stericson/RootTools/execution/Shell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.164859" vertical-offset="13903" max-vertical-offset="21793">
-          <caret line="788" column="38" selection-start-line="788" selection-start-column="0" selection-end-line="789" selection-end-column="0" />
+        <state vertical-scroll-proportion="9.151844" vertical-offset="10240" max-vertical-offset="21489">
+          <caret line="791" column="0" selection-start-line="791" selection-start-column="0" selection-end-line="791" selection-end-column="0" />
           <folding>
-            <element signature="e#13794#13802#0" expanded="true" />
-            <element signature="e#17338#20385#0" expanded="true" />
-            <element signature="e#20448#20656#0" expanded="true" />
-            <element signature="e#20848#25270#0" expanded="true" />
+            <element signature="e#3090#3099#0" expanded="true" />
+            <element signature="e#13838#13846#0" expanded="true" />
+            <element signature="e#17382#20429#0" expanded="true" />
+            <element signature="e#20492#20700#0" expanded="true" />
+            <element signature="e#20892#25314#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1290,11 +1167,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Android|RootTools</last-edited>
+          <last-edited>RootTools</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

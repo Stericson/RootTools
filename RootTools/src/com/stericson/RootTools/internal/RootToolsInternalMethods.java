@@ -681,6 +681,8 @@ public final class RootToolsInternalMethods
                         }
 
                         RootTools.log(line);
+
+                        super.commandOutput(id, line);
                     }
                 };
 
@@ -827,10 +829,13 @@ public final class RootToolsInternalMethods
                 {
                     if (id == Constants.BBV)
                     {
+                        RootTools.log("Version Output: " + line);
+
                         if (line.startsWith("BusyBox") && InternalVariables.busyboxVersion.equals(""))
                         {
                             String[] temp = line.split(" ");
                             InternalVariables.busyboxVersion = temp[1];
+                            RootTools.log("Found Version: " + InternalVariables.busyboxVersion);
                         }
                     }
                 }
@@ -838,15 +843,17 @@ public final class RootToolsInternalMethods
 
             //try without root first
             RootTools.log("Getting BusyBox Version without root");
-            Shell.startShell().add(command);
-            commandWait(Shell.startShell(), command);
+            Shell shell = RootTools.getShell(false);
+            shell.add(command);
+            commandWait(shell, command);
 
             if (InternalVariables.busyboxVersion.length() <= 0)
             {
-                //try without root first
                 RootTools.log("Getting BusyBox Version with root");
-                Shell.startRootShell().add(command);
-                commandWait(Shell.startRootShell(), command);
+                Shell rootShell = RootTools.getShell(true);
+                //Now look for it...
+                rootShell.add(command);
+                commandWait(rootShell, command);
             }
 
         }

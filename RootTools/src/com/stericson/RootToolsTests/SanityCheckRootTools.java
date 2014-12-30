@@ -255,10 +255,26 @@ public class SanityCheckRootTools extends Activity
             {
 
                 visualUpdate(TestHandler.ACTION_DISPLAY, "[ Getting all available Busybox applets ]\n");
-                for (String applet : RootTools.getBusyBoxApplets("/data/data/stericson.busybox.donate/files/bb"))
+                for (String applet : RootTools.getBusyBoxApplets("/data/data/stericson.busybox/files/bb/busybox"))
                 {
                     visualUpdate(TestHandler.ACTION_DISPLAY, applet + " k\n\n");
                 }
+
+            }
+            catch (Exception e1)
+            {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
+            visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing GetBusyBox version in a special directory!");
+            try
+            {
+
+                visualUpdate(TestHandler.ACTION_DISPLAY, "[ Testing GetBusyBox version in a special directory! ]\n");
+                String v = RootTools.getBusyBoxVersion("/data/data/stericson.busybox/files/bb/");
+
+                visualUpdate(TestHandler.ACTION_DISPLAY, v + " k\n\n");
 
             }
             catch (Exception e1)
@@ -374,7 +390,7 @@ public class SanityCheckRootTools extends Activity
             {
                 shell = RootTools.getShell(true);
 
-                CommandCapture cmd = new CommandCapture(42, false, "find /")
+                CommandCapture cmd = new CommandCapture(42, false, "echo done")
                 {
 
                     boolean _catch = false;
@@ -382,12 +398,13 @@ public class SanityCheckRootTools extends Activity
                     @Override
                     public void commandOutput(int id, String line)
                     {
-                        super.commandOutput(id, line);
-
                         if (_catch)
                         {
                             RootTools.log("CAUGHT!!!");
                         }
+
+                        super.commandOutput(id, line);
+
                     }
 
                     @Override

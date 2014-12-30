@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import android.content.Context;
+import android.provider.DocumentsContract;
+
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 
@@ -847,7 +849,7 @@ public class Shell
     {
         try
         {
-            while (errorStream.ready())
+            while (errorStream.ready() && command != null)
             {
                 String line = errorStream.readLine();
 
@@ -859,26 +861,10 @@ public class Shell
                     break;
                 }
 
-                if (command == null)
-                {
-                    if (read >= commands.size())
-                    {
-                        if (close)
-                        {
-                            break;
-                        }
-
-                        continue;
-                    }
-
-                    command = commands.get(read);
-                }
-
                 /**
                  * send the output for the implementer to process
                  */
                 command.output(command.id, line);
-
             }
         }
         catch (Exception e)
