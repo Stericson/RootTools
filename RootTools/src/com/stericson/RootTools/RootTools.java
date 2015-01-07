@@ -33,12 +33,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.stericson.RootShell.RootShell;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.containers.Mount;
 import com.stericson.RootTools.containers.Permissions;
 import com.stericson.RootTools.containers.Symlink;
-import com.stericson.RootTools.exceptions.RootDeniedException;
-import com.stericson.RootTools.execution.Command;
-import com.stericson.RootTools.execution.Shell;
 import com.stericson.RootTools.internal.Remounter;
 import com.stericson.RootTools.internal.RootToolsInternalMethods;
 import com.stericson.RootTools.internal.Runner;
@@ -84,7 +85,6 @@ public final class RootTools
     // --------------------
 
     public static boolean debugMode = false;
-    public static List<String> lastFoundBinaryPaths = new ArrayList<String>();
     public static String utilPath;
 
     /**
@@ -133,7 +133,7 @@ public final class RootTools
      */
     public static void closeAllShells() throws IOException
     {
-        Shell.closeAll();
+        RootShell.closeAllShells();
     }
 
     /**
@@ -143,7 +143,7 @@ public final class RootTools
      */
     public static void closeCustomShell() throws IOException
     {
-        Shell.closeCustomShell();
+        RootShell.closeCustomShell();
     }
 
     /**
@@ -154,14 +154,7 @@ public final class RootTools
      */
     public static void closeShell(boolean root) throws IOException
     {
-        if (root)
-        {
-            Shell.closeRootShell();
-        }
-        else
-        {
-            Shell.closeShell();
-        }
+        RootShell.closeShell(root);
     }
 
     /**
@@ -215,7 +208,7 @@ public final class RootTools
      */
     public static boolean exists(final String file, boolean isDir)
     {
-        return getInternals().exists(file, isDir);
+        return RootShell.exists(file, isDir);
     }
 
     /**
@@ -251,13 +244,11 @@ public final class RootTools
 
     /**
      * @param binaryName String that represent the binary to find.
-     * @return <code>true</code> if the specified binary was found. Also, the path the binary was
-     * found at can be retrieved via the variable lastFoundBinaryPath, if the binary was
-     * found in more than one location this will contain all of these locations.
+     * @return <code>List<String></code> containing the paths the binary was found at.
      */
-    public static boolean findBinary(String binaryName)
+    public static List<String> findBinary(String binaryName)
     {
-        return getInternals().findBinary(binaryName);
+        return RootShell.findBinary(binaryName);
     }
 
     /**
@@ -307,12 +298,12 @@ public final class RootTools
      * @param shellPath a <code>String</code> to Indicate the path to the shell that you want to open.
      * @param timeout   an <code>int</code> to Indicate the length of time before giving up on opening a shell.
      * @throws TimeoutException
-     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @throws com.stericson.RootShell.exceptions.RootDeniedException
      * @throws IOException
      */
     public static Shell getCustomShell(String shellPath, int timeout) throws IOException, TimeoutException, RootDeniedException
     {
-        return Shell.startCustomShell(shellPath, timeout);
+        return RootShell.getCustomShell(shellPath, timeout);
     }
 
     /**
@@ -321,7 +312,7 @@ public final class RootTools
      *
      * @param shellPath a <code>String</code> to Indicate the path to the shell that you want to open.
      * @throws TimeoutException
-     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @throws com.stericson.RootShell.exceptions.RootDeniedException
      * @throws IOException
      */
     public static Shell getCustomShell(String shellPath) throws IOException, TimeoutException, RootDeniedException
@@ -398,19 +389,12 @@ public final class RootTools
      * @param shellContext the context to execute the shell with
      * @param retry        a <code>int</code> to indicate how many times the ROOT shell should try to open with root priviliges...
      * @throws TimeoutException
-     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @throws com.stericson.RootShell.exceptions.RootDeniedException
      * @throws IOException
      */
     public static Shell getShell(boolean root, int timeout, Shell.ShellContext shellContext, int retry) throws IOException, TimeoutException, RootDeniedException
     {
-        if (root)
-        {
-            return Shell.startRootShell(timeout, shellContext, retry);
-        }
-        else
-        {
-            return Shell.startShell(timeout);
-        }
+        return RootShell.getShell(root, timeout, shellContext, retry);
     }
 
     /**
@@ -421,7 +405,7 @@ public final class RootTools
      * @param timeout      an <code>int</code> to Indicate the length of time to wait before giving up on opening a shell.
      * @param shellContext the context to execute the shell with
      * @throws TimeoutException
-     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @throws com.stericson.RootShell.exceptions.RootDeniedException
      * @throws IOException
      */
     public static Shell getShell(boolean root, int timeout, Shell.ShellContext shellContext) throws IOException, TimeoutException, RootDeniedException
@@ -436,7 +420,7 @@ public final class RootTools
      * @param root         a <code>boolean</code> to Indicate whether or not you want to open a root shell or a standard shell
      * @param shellContext the context to execute the shell with
      * @throws TimeoutException
-     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @throws com.stericson.RootShell.exceptions.RootDeniedException
      * @throws IOException
      */
     public static Shell getShell(boolean root, Shell.ShellContext shellContext) throws IOException, TimeoutException, RootDeniedException
@@ -451,7 +435,7 @@ public final class RootTools
      * @param root    a <code>boolean</code> to Indicate whether or not you want to open a root shell or a standard shell
      * @param timeout an <code>int</code> to Indicate the length of time to wait before giving up on opening a shell.
      * @throws TimeoutException
-     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @throws com.stericson.RootShell.exceptions.RootDeniedException
      * @throws IOException
      */
     public static Shell getShell(boolean root, int timeout) throws IOException, TimeoutException, RootDeniedException
@@ -465,7 +449,7 @@ public final class RootTools
      *
      * @param root a <code>boolean</code> to Indicate whether or not you want to open a root shell or a standard shell
      * @throws TimeoutException
-     * @throws com.stericson.RootTools.exceptions.RootDeniedException
+     * @throws com.stericson.RootShell.exceptions.RootDeniedException
      * @throws IOException
      */
     public static Shell getShell(boolean root) throws IOException, TimeoutException, RootDeniedException
@@ -629,7 +613,7 @@ public final class RootTools
      */
     public static boolean isAccessGiven()
     {
-        return getInternals().isAccessGiven();
+        return RootShell.isAccessGiven();
     }
 
     /**
@@ -637,7 +621,7 @@ public final class RootTools
      */
     public static boolean isBusyboxAvailable()
     {
-        return findBinary("busybox");
+        return RootShell.isBusyboxAvailable();
     }
 
     public static boolean isNativeToolsReady(int nativeToolsId, Context context)
@@ -663,7 +647,7 @@ public final class RootTools
      */
     public static boolean isRootAvailable()
     {
-        return findBinary("su");
+        return RootShell.isRootAvailable();
     }
 
     /**

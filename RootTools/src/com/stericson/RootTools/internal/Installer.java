@@ -37,10 +37,9 @@ import java.security.NoSuchAlgorithmException;
 
 import android.util.Log;
 
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.execution.Command;
-import com.stericson.RootTools.execution.CommandCapture;
-import com.stericson.RootTools.execution.Shell;
 
 import android.content.Context;
 
@@ -200,7 +199,7 @@ class Installer
 
             try
             {
-                CommandCapture command = new CommandCapture(0, false, "chmod " + mode + " " + filesPath + File.separator + destName);
+                Command command = new Command(0, false, "chmod " + mode + " " + filesPath + File.separator + destName);
                 Shell.startRootShell().add(command);
                 commandWait(command);
 

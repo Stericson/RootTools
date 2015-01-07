@@ -26,12 +26,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.Constants;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.containers.Mount;
-import com.stericson.RootTools.execution.Command;
-import com.stericson.RootTools.execution.CommandCapture;
-import com.stericson.RootTools.execution.Shell;
 
 public class Remounter
 {
@@ -117,7 +116,7 @@ public class Remounter
                 //grab an instance of the internal class
                 try
                 {
-                    CommandCapture command = new CommandCapture(0,
+                    Command command = new Command(0,
                             true,
                             "busybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),

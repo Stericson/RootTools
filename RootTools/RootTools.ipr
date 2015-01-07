@@ -389,5 +389,14 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
   </component>
+  <component name="libraryTable">
+    <library name="RootShell">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/RootShell.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+  </component>
 </project>
 

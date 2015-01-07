@@ -44,14 +44,14 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
+import com.stericson.RootShell.RootShell;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.Constants;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.containers.Mount;
 import com.stericson.RootTools.containers.Permissions;
 import com.stericson.RootTools.containers.Symlink;
-import com.stericson.RootTools.execution.Command;
-import com.stericson.RootTools.execution.CommandCapture;
-import com.stericson.RootTools.execution.Shell;
 
 public final class RootToolsInternalMethods
 {
@@ -245,7 +245,7 @@ public final class RootToolsInternalMethods
                             boolean preserveFileAttributes)
     {
 
-        CommandCapture command = null;
+        Command command = null;
         boolean result = true;
 
         try
@@ -263,7 +263,7 @@ public final class RootToolsInternalMethods
 
                 if (preserveFileAttributes)
                 {
-                    command = new CommandCapture(0, false, "cp -fp " + source + " " + destination);
+                    command = new Command(0, false, "cp -fp " + source + " " + destination);
                     Shell.startRootShell().add(command);
                     commandWait(Shell.startRootShell(), command);
 
@@ -273,7 +273,7 @@ public final class RootToolsInternalMethods
                 }
                 else
                 {
-                    command = new CommandCapture(0, false, "cp -f " + source + " " + destination);
+                    command = new Command(0, false, "cp -f " + source + " " + destination);
                     Shell.startRootShell().add(command);
                     commandWait(Shell.startRootShell(), command);
 
@@ -290,14 +290,14 @@ public final class RootToolsInternalMethods
 
                     if (preserveFileAttributes)
                     {
-                        command = new CommandCapture(0, false, "busybox cp -fp " + source + " " + destination);
+                        command = new Command(0, false, "busybox cp -fp " + source + " " + destination);
                         Shell.startRootShell().add(command);
                         commandWait(Shell.startRootShell(), command);
 
                     }
                     else
                     {
-                        command = new CommandCapture(0, false, "busybox cp -f " + source + " " + destination);
+                        command = new Command(0, false, "busybox cp -f " + source + " " + destination);
                         Shell.startRootShell().add(command);
                         commandWait(Shell.startRootShell(), command);
 
@@ -319,14 +319,14 @@ public final class RootToolsInternalMethods
                         }
 
                         // copy with cat
-                        command = new CommandCapture(0, false, "cat " + source + " > " + destination);
+                        command = new Command(0, false, "cat " + source + " > " + destination);
                         Shell.startRootShell().add(command);
                         commandWait(Shell.startRootShell(), command);
 
                         if (preserveFileAttributes)
                         {
                             // set premissions of source to destination
-                            command = new CommandCapture(0, false, "chmod " + filePermission + " " + destination);
+                            command = new Command(0, false, "chmod " + filePermission + " " + destination);
                             Shell.startRootShell().add(command);
                             commandWait(Shell.startRootShell(), command);
                         }
@@ -369,13 +369,11 @@ public final class RootToolsInternalMethods
      */
     public boolean checkUtil(String util)
     {
-        if (RootTools.findBinary(util))
+        List<String> foundPaths = RootShell.findBinary(util);
+        if (foundPaths.size() > 0)
         {
 
-            List<String> binaryPaths = new ArrayList<String>();
-            binaryPaths.addAll(RootTools.lastFoundBinaryPaths);
-
-            for (String path : binaryPaths)
+            for (String path : foundPaths)
             {
                 Permissions permissions = RootTools
                         .getFilePermissionsSymlinks(path + "/" + util);
@@ -430,7 +428,7 @@ public final class RootToolsInternalMethods
             {
                 RootTools.log("rm command is available!");
 
-                CommandCapture command = new CommandCapture(0, false, "rm -r " + target);
+                Command command = new Command(0, false, "rm -r " + target);
                 Shell.startRootShell().add(command);
                 commandWait(Shell.startRootShell(), command);
 
@@ -446,7 +444,7 @@ public final class RootToolsInternalMethods
                 {
                     RootTools.log("busybox rm command is available!");
 
-                    CommandCapture command = new CommandCapture(0, false, "busybox rm -rf " + target);
+                    Command command = new Command(0, false, "busybox rm -rf " + target);
                     Shell.startRootShell().add(command);
                     commandWait(Shell.startRootShell(), command);
 
@@ -474,91 +472,6 @@ public final class RootToolsInternalMethods
     }
 
     /**
-     * Use this to check whether or not a file exists on the filesystem.
-     *
-     * @param file String that represent the file, including the full path to the
-     *             file and its name.
-     * @return a boolean that will indicate whether or not the file exists.
-     */
-    public boolean exists(final String file)
-    {
-        return exists(file, false);
-    }
-
-    /**
-     * Use this to check whether or not a file OR directory exists on the filesystem.
-     *
-     * @param file  String that represent the file OR the directory, including the full path to the
-     *              file and its name.
-     * @param isDir boolean that represent whether or not we are looking for a directory
-     * @return a boolean that will indicate whether or not the file exists.
-     */
-    public boolean exists(final String file, boolean isDir)
-    {
-        final List<String> result = new ArrayList<String>();
-
-        String cmdToExecute = "ls " + (isDir ? "-d " : " ");
-
-        CommandCapture command = new CommandCapture(0, false, cmdToExecute + file)
-        {
-            @Override
-            public void output(int arg0, String arg1)
-            {
-                RootTools.log(arg1);
-                result.add(arg1);
-            }
-        };
-
-        try
-        {
-            //Try without root...
-            Shell.startShell().add(command);
-            commandWait(Shell.startShell(), command);
-
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-
-        for (String line : result)
-        {
-            if (line.trim().equals(file))
-            {
-                return true;
-            }
-        }
-
-        result.clear();
-
-        try
-        {
-            Shell.startRootShell().add(command);
-            commandWait(Shell.startRootShell(), command);
-
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-
-        //Avoid concurrent modification...
-        List<String> final_result = new ArrayList<String>();
-        final_result.addAll(result);
-
-        for (String line : final_result)
-        {
-            if (line.trim().equals(file))
-            {
-                return true;
-            }
-        }
-
-        return false;
-
-    }
-
-    /**
      * This will try and fix a given binary. (This is for Busybox applets or Toolbox applets) By
      * "fix", I mean it will try and symlink the binary from either toolbox or Busybox and fix the
      * permissions if the permissions are not correct.
@@ -574,19 +487,18 @@ public final class RootToolsInternalMethods
         {
             RootTools.remount("/system", "rw");
 
-            if (RootTools.findBinary(util))
+            List<String> foundPaths = RootShell.findBinary(util);
+            if (foundPaths.size() > 0)
             {
-                List<String> paths = new ArrayList<String>();
-                paths.addAll(RootTools.lastFoundBinaryPaths);
-                for (String path : paths)
+                for (String path : foundPaths)
                 {
-                    CommandCapture command = new CommandCapture(0, false, utilPath + " rm " + path + "/" + util);
+                    Command command = new Command(0, false, utilPath + " rm " + path + "/" + util);
                     Shell.startRootShell().add(command);
                     commandWait(Shell.startRootShell(), command);
 
                 }
 
-                CommandCapture command = new CommandCapture(0, false, utilPath + " ln -s " + utilPath + " /system/bin/" + util, utilPath + " chmod 0755 /system/bin/" + util);
+                Command command = new Command(0, false, utilPath + " ln -s " + utilPath + " /system/bin/" + util, utilPath + " chmod 0755 /system/bin/" + util);
                 Shell.startRootShell().add(command);
                 commandWait(Shell.startRootShell(), command);
 
@@ -645,117 +557,6 @@ public final class RootToolsInternalMethods
     }
 
     /**
-     * @param binaryName String that represent the binary to find.
-     * @return <code>true</code> if the specified binary was found. Also, the path the binary was
-     * found at can be retrieved via the variable lastFoundBinaryPath, if the binary was
-     * found in more than one location this will contain all of these locations.
-     */
-    public boolean findBinary(final String binaryName)
-    {
-        boolean found = false;
-        RootTools.lastFoundBinaryPaths.clear();
-
-        final List<String> list = new ArrayList<String>();
-        String[] places = {
-                "/sbin/", "/system/bin/", "/system/xbin/", "/data/local/xbin/",
-                "/data/local/bin/", "/system/sd/xbin/", "/system/bin/failsafe/", "/data/local/"
-        };
-
-        RootTools.log("Checking for " + binaryName);
-
-        //Try to use stat first
-        try
-        {
-            for (final String path : places)
-            {
-                CommandCapture cc = new CommandCapture(0, false, "stat " + path + binaryName)
-                {
-                    @Override
-                    public void commandOutput(int id, String line)
-                    {
-                        if (line.contains("File: ") && line.contains(binaryName))
-                        {
-                            list.add(path);
-
-                            RootTools.log(binaryName + " was found here: " + path);
-                        }
-
-                        RootTools.log(line);
-
-                        super.commandOutput(id, line);
-                    }
-                };
-
-                RootTools.getShell(false).add(cc);
-                commandWait(RootTools.getShell(false), cc);
-
-            }
-
-            found = !list.isEmpty();
-        }
-        catch (Exception e)
-        {
-            RootTools.log(binaryName + " was not found, more information MAY be available with Debugging on.");
-        }
-
-        if (!found)
-        {
-            RootTools.log("Trying second method");
-
-            for (String where : places)
-            {
-                if (RootTools.exists(where + binaryName))
-                {
-                    RootTools.log(binaryName + " was found here: " + where);
-                    list.add(where);
-                    found = true;
-                }
-                else
-                {
-                    RootTools.log(binaryName + " was NOT found here: " + where);
-                }
-            }
-        }
-
-        if (!found)
-        {
-            RootTools.log("Trying third method");
-
-            try
-            {
-                List<String> paths = RootTools.getPath();
-
-                if (paths != null)
-                {
-                    for (String path : paths)
-                    {
-                        if (RootTools.exists(path + "/" + binaryName))
-                        {
-                            RootTools.log(binaryName + " was found here: " + path);
-                            list.add(path);
-                            found = true;
-                        }
-                        else
-                        {
-                            RootTools.log(binaryName + " was NOT found here: " + path);
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                RootTools.log(binaryName + " was not found, more information MAY be available with Debugging on.");
-            }
-        }
-
-        Collections.reverse(list);
-
-        RootTools.lastFoundBinaryPaths.addAll(list);
-
-        return found;
-    }
-
-    /**
      * This will return an List of Strings. Each string represents an applet available from BusyBox.
      * <p/>
      *
@@ -777,31 +578,33 @@ public final class RootToolsInternalMethods
 
         final List<String> results = new ArrayList<String>();
 
-        CommandCapture command = new CommandCapture(Constants.BBA, false, path + "busybox --list")
+        Command command = new Command(Constants.BBA, false, path + "busybox --list")
         {
 
             @Override
-            public void output(int id, String line)
+            public void commandOutput(int id, String line)
             {
                 if (id == Constants.BBA)
                 {
-                    if (!line.trim().equals("") && !line.trim().contains("not found"))
+                    if (!line.trim().equals("") && !line.trim().contains("not found") && !line.trim().contains("file busy"))
                     {
                         results.add(line);
                     }
                 }
+
+                super.commandOutput(id, line);
             }
         };
 
         //try without root first...
-        Shell.startShell().add(command);
-        commandWait(Shell.startShell(), command);
+        RootShell.getShell(false).add(command);
+        commandWait(RootShell.getShell(false), command);
 
         if (results.size() <= 0)
         {
             //try with root...
-            Shell.startRootShell().add(command);
-            commandWait(Shell.startRootShell(), command);
+            RootShell.getShell(true).add(command);
+            commandWait(RootShell.getShell(true), command);
         }
 
         return results;
@@ -822,22 +625,30 @@ public final class RootToolsInternalMethods
 
         try
         {
-            CommandCapture command = new CommandCapture(Constants.BBV, false, path + "busybox")
+            Command command = new Command(Constants.BBV, false, path + "busybox")
             {
                 @Override
-                public void output(int id, String line)
+                public void commandOutput(int id, String line)
                 {
+                    line = line.trim();
+
+                    boolean foundVersion = false;
+
                     if (id == Constants.BBV)
                     {
                         RootTools.log("Version Output: " + line);
 
-                        if (line.startsWith("BusyBox") && InternalVariables.busyboxVersion.equals(""))
+                        String[] temp = line.split(" ");
+
+                        if (temp.length > 1 && temp[1].contains("v1.") && !foundVersion)
                         {
-                            String[] temp = line.split(" ");
+                            foundVersion = true;
                             InternalVariables.busyboxVersion = temp[1];
                             RootTools.log("Found Version: " + InternalVariables.busyboxVersion);
                         }
                     }
+
+                    super.commandOutput(id, line);
                 }
             };
 
@@ -912,11 +723,11 @@ public final class RootToolsInternalMethods
     {
         try
         {
-            CommandCapture command = new CommandCapture(Constants.GI, false, "/data/local/ls -i " + file)
+            Command command = new Command(Constants.GI, false, "/data/local/ls -i " + file)
             {
 
                 @Override
-                public void output(int id, String line)
+                public void commandOutput(int id, String line)
                 {
                     if (id == Constants.GI)
                     {
@@ -925,6 +736,8 @@ public final class RootToolsInternalMethods
                             InternalVariables.inode = line.trim().split(" ")[0];
                         }
                     }
+
+                    super.commandOutput(id, line);
                 }
             };
             Shell.startRootShell().add(command);
@@ -935,56 +748,6 @@ public final class RootToolsInternalMethods
         catch (Exception ignore)
         {
             return "";
-        }
-    }
-
-    /**
-     * @return <code>true</code> if your app has been given root access.
-     * @throws TimeoutException if this operation times out. (cannot determine if access is given)
-     */
-    public boolean isAccessGiven()
-    {
-        try
-        {
-            RootTools.log("Checking for Root access");
-            InternalVariables.accessGiven = false;
-
-            CommandCapture command = new CommandCapture(Constants.IAG, false, "id")
-            {
-                @Override
-                public void output(int id, String line)
-                {
-                    if (id == Constants.IAG)
-                    {
-                        Set<String> ID = new HashSet<String>(Arrays.asList(line.split(" ")));
-                        for (String userid : ID)
-                        {
-                            RootTools.log(userid);
-
-                            if (userid.toLowerCase().contains("uid=0"))
-                            {
-                                InternalVariables.accessGiven = true;
-                                RootTools.log("Access Given");
-                                break;
-                            }
-                        }
-                        if (!InternalVariables.accessGiven)
-                        {
-                            RootTools.log("Access Denied?");
-                        }
-                    }
-                }
-            };
-            Shell.startRootShell().add(command);
-            commandWait(Shell.startRootShell(), command);
-
-            return InternalVariables.accessGiven;
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return false;
         }
     }
 
@@ -1035,14 +798,14 @@ public final class RootToolsInternalMethods
             try
             {
 
-                CommandCapture command = new CommandCapture(
+                Command command = new Command(
                         Constants.FPS, false, "ls -l " + file,
                         "busybox ls -l " + file,
                         "/system/bin/failsafe/toolbox ls -l " + file,
                         "toolbox ls -l " + file)
                 {
                     @Override
-                    public void output(int id, String line)
+                    public void commandOutput(int id, String line)
                     {
                         if (id == Constants.FPS)
                         {
@@ -1082,6 +845,8 @@ public final class RootToolsInternalMethods
                                 RootTools.log(e.getMessage());
                             }
                         }
+
+                        super.commandOutput(id, line);
                     }
                 };
                 Shell.startRootShell().add(command);
@@ -1114,7 +879,7 @@ public final class RootToolsInternalMethods
 
         Shell shell = RootTools.getShell(true);
 
-        CommandCapture cmd = new CommandCapture(0,
+        Command cmd = new Command(0,
                 false,
                 "cat /proc/mounts > /data/local/RootToolsMounts",
                 "chmod 0777 /data/local/RootToolsMounts");
@@ -1234,11 +999,11 @@ public final class RootToolsInternalMethods
         RootTools.log("Looking for Space");
         try
         {
-            final CommandCapture command = new CommandCapture(Constants.GS, false, "df " + path)
+            final Command command = new Command(Constants.GS, false, "df " + path)
             {
 
                 @Override
-                public void output(int id, String line)
+                public void commandOutput(int id, String line)
                 {
                     if (id == Constants.GS)
                     {
@@ -1247,6 +1012,8 @@ public final class RootToolsInternalMethods
                             InternalVariables.space = line.split(" ");
                         }
                     }
+
+                    super.commandOutput(id, line);
                 }
             };
             Shell.startRootShell().add(command);
@@ -1321,11 +1088,11 @@ public final class RootToolsInternalMethods
         {
             final List<String> results = new ArrayList<String>();
 
-            CommandCapture command = new CommandCapture(Constants.GSYM, false, "ls -l " + file)
+            Command command = new Command(Constants.GSYM, false, "ls -l " + file)
             {
 
                 @Override
-                public void output(int id, String line)
+                public void commandOutput(int id, String line)
                 {
                     if (id == Constants.GSYM)
                     {
@@ -1334,6 +1101,8 @@ public final class RootToolsInternalMethods
                             results.add(line);
                         }
                     }
+
+                    super.commandOutput(id, line);
                 }
             };
             Shell.startRootShell().add(command);
@@ -1349,11 +1118,11 @@ public final class RootToolsInternalMethods
                 if (!symlink[symlink.length - 1].equals("") && !symlink[symlink.length - 1].contains("/"))
                 {
                     //We assume that we need to get the path for this symlink as it is probably not absolute.
-                    findBinary(symlink[symlink.length - 1]);
-                    if (RootTools.lastFoundBinaryPaths.size() > 0)
+                    List<String> paths = RootShell.findBinary(symlink[symlink.length - 1]);
+                    if (paths.size() > 0)
                     {
                         //We return the first found location.
-                        final_symlink = RootTools.lastFoundBinaryPaths.get(0) + "/" + symlink[symlink.length - 1];
+                        final_symlink = paths.get(0) + symlink[symlink.length - 1];
                     }
                     else
                     {
@@ -1400,11 +1169,11 @@ public final class RootToolsInternalMethods
             throw new Exception();
         }
 
-        CommandCapture command = new CommandCapture(0, false, "dd if=/dev/zero of=/data/local/symlinks.txt bs=1024 count=1", "chmod 0777 /data/local/symlinks.txt");
+        Command command = new Command(0, false, "dd if=/dev/zero of=/data/local/symlinks.txt bs=1024 count=1", "chmod 0777 /data/local/symlinks.txt");
         Shell.startRootShell().add(command);
         commandWait(Shell.startRootShell(), command);
 
-        command = new CommandCapture(0, false, "find " + path + " -type l -exec ls -l {} \\; > /data/local/symlinks.txt");
+        command = new Command(0, false, "find " + path + " -type l -exec ls -l {} \\; > /data/local/symlinks.txt");
         Shell.startRootShell().add(command);
         commandWait(Shell.startRootShell(), command);
 
@@ -1486,11 +1255,11 @@ public final class RootToolsInternalMethods
         try
         {
 
-            CommandCapture command = new CommandCapture(0, false, box.endsWith("toolbox") ? box + " " + util : box + " --list")
+            Command command = new Command(0, false, box.endsWith("toolbox") ? box + " " + util : box + " --list")
             {
 
                 @Override
-                public void output(int id, String line)
+                public void commandOutput(int id, String line)
                 {
                     if (box.endsWith("toolbox"))
                     {
@@ -1508,6 +1277,8 @@ public final class RootToolsInternalMethods
                             InternalVariables.found = true;
                         }
                     }
+
+                    super.commandOutput(id, line);
                 }
             };
             RootTools.getShell(true).add(command);
@@ -1634,15 +1405,17 @@ public final class RootToolsInternalMethods
 
         try
         {
-            CommandCapture command = new CommandCapture(0, false, "ps")
+            Command command = new Command(0, false, "ps")
             {
                 @Override
-                public void output(int id, String line)
+                public void commandOutput(int id, String line)
                 {
                     if (line.contains(processName))
                     {
                         InternalVariables.processRunning = true;
                     }
+
+                    super.commandOutput(id, line);
                 }
             };
             RootTools.getShell(true).add(command);
@@ -1675,10 +1448,10 @@ public final class RootToolsInternalMethods
         try
         {
 
-            CommandCapture command = new CommandCapture(0, false, "ps")
+            Command command = new Command(0, false, "ps")
             {
                 @Override
-                public void output(int id, String line)
+                public void commandOutput(int id, String line)
                 {
                     if (line.contains(processName))
                     {
@@ -1706,6 +1479,8 @@ public final class RootToolsInternalMethods
                             e.printStackTrace();
                         }
                     }
+
+                    super.commandOutput(id, line);
                 }
             };
             RootTools.getShell(true).add(command);
@@ -1720,7 +1495,7 @@ public final class RootToolsInternalMethods
                 try
                 {
                     // example: kill -9 1234 1222 5343
-                    command = new CommandCapture(0, false, "kill -9 " + pids);
+                    command = new Command(0, false, "kill -9 " + pids);
                     RootTools.getShell(true).add(command);
                     commandWait(RootTools.getShell(true), command);
 

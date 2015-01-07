@@ -29,8 +29,6 @@ import java.util.concurrent.TimeoutException;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -38,12 +36,11 @@ import android.os.StrictMode;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.containers.Permissions;
-import com.stericson.RootTools.exceptions.RootDeniedException;
-import com.stericson.RootTools.execution.CommandCapture;
-import com.stericson.RootTools.execution.JavaCommandCapture;
-import com.stericson.RootTools.execution.Shell;
 
 public class SanityCheckRootTools extends Activity
 {
@@ -309,7 +306,7 @@ public class SanityCheckRootTools extends Activity
             try
             {
                 shell = RootTools.getShell(true);
-                CommandCapture cmd = new CommandCapture(
+                Command cmd = new Command(
                         0,
                         "busybox ash --help")
                 {
@@ -335,7 +332,7 @@ public class SanityCheckRootTools extends Activity
             try
             {
                 shell = RootTools.getShell(true, Shell.ShellContext.SYSTEM_APP);
-                CommandCapture cmd = new CommandCapture(
+                Command cmd = new Command(
                         0,
                         "id")
                 {
@@ -349,6 +346,22 @@ public class SanityCheckRootTools extends Activity
                 };
                 shell.add(cmd);
 
+                visualUpdate(TestHandler.ACTION_PDISPLAY, "Testing PM");
+                visualUpdate(TestHandler.ACTION_DISPLAY, "[ Testing pm list packages -d ]\n");
+
+                cmd = new Command(
+                        0,
+                        "sh /system/bin/pm list packages -d")
+                {
+
+                    @Override
+                    public void commandOutput(int id, String line)
+                    {
+                        visualUpdate(TestHandler.ACTION_DISPLAY, line + "\n");
+                        super.commandOutput(id, line);
+                    }
+                };
+                shell.add(cmd);
             }
             catch (Exception e)
             {
@@ -361,7 +374,7 @@ public class SanityCheckRootTools extends Activity
             try
             {
                 shell = RootTools.getShell(true, Shell.ShellContext.UNTRUSTED_APP);
-                CommandCapture cmd = new CommandCapture(
+                Command cmd = new Command(
                         0,
                         "id")
                 {
@@ -390,7 +403,7 @@ public class SanityCheckRootTools extends Activity
             {
                 shell = RootTools.getShell(true);
 
-                CommandCapture cmd = new CommandCapture(42, false, "echo done")
+                Command cmd = new Command(42, false, "echo done")
                 {
 
                     boolean _catch = false;

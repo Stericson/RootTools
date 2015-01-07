@@ -39,7 +39,6 @@ public class InternalVariables
     // ----------------------
 
 
-    protected static boolean accessGiven = false;
     protected static boolean nativeToolsReady = false;
     protected static boolean found = false;
     protected static boolean processRunning = false;
@@ -48,10 +47,8 @@ public class InternalVariables
     protected static String getSpaceFor;
     protected static String busyboxVersion;
     protected static String pid_list = "";
-    protected static Set<String> path;
     protected static ArrayList<Mount> mounts;
     protected static ArrayList<Symlink> symlinks;
-    protected static List<String> results;
     protected static String inode = "";
     protected static Permissions permissions;
 

@@ -24,10 +24,9 @@ package com.stericson.RootTools.internal;
 
 import java.io.IOException;
 
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.execution.Command;
-import com.stericson.RootTools.execution.CommandCapture;
-import com.stericson.RootTools.execution.Shell;
 
 import android.content.Context;
 import android.util.Log;
@@ -67,7 +66,7 @@ public class Runner extends Thread
         {
             try
             {
-                CommandCapture command = new CommandCapture(0, false, privateFilesPath + "/" + binaryName + " " + parameter);
+                Command command = new Command(0, false, privateFilesPath + "/" + binaryName + " " + parameter);
                 Shell.startRootShell().add(command);
                 commandWait(command);
 
