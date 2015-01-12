@@ -17,7 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/stericson/RootToolsTests" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 20, L preview Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="RootShell" level="project" />
   </component>
