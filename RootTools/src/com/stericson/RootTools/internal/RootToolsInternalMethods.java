@@ -488,19 +488,20 @@ public final class RootToolsInternalMethods
             RootTools.remount("/system", "rw");
 
             List<String> foundPaths = RootShell.findBinary(util);
+
             if (foundPaths.size() > 0)
             {
                 for (String path : foundPaths)
                 {
                     Command command = new Command(0, false, utilPath + " rm " + path + "/" + util);
-                    Shell.startRootShell().add(command);
-                    commandWait(Shell.startRootShell(), command);
+                    RootShell.getShell(true).add(command);
+                    commandWait(RootShell.getShell(true), command);
 
                 }
 
                 Command command = new Command(0, false, utilPath + " ln -s " + utilPath + " /system/bin/" + util, utilPath + " chmod 0755 /system/bin/" + util);
-                Shell.startRootShell().add(command);
-                commandWait(Shell.startRootShell(), command);
+                RootShell.getShell(true).add(command);
+                commandWait(RootShell.getShell(true), command);
 
             }
 
@@ -814,6 +815,7 @@ public final class RootToolsInternalMethods
                             String[] lineArray = line.split(" ");
                             if (lineArray[0].length() != 10)
                             {
+                                super.commandOutput(id, line);
                                 return;
                             }
 
@@ -849,8 +851,8 @@ public final class RootToolsInternalMethods
                         super.commandOutput(id, line);
                     }
                 };
-                Shell.startRootShell().add(command);
-                commandWait(Shell.startRootShell(), command);
+                RootShell.getShell(true).add(command);
+                commandWait(RootShell.getShell(true), command);
 
                 return InternalVariables.permissions;
 
@@ -1587,6 +1589,7 @@ public final class RootToolsInternalMethods
         {
 
             RootTools.log(Constants.TAG, shell.getCommandQueuePositionString(cmd));
+            RootTools.log(Constants.TAG, "Processed " + cmd.totalOutputProcessed + " of " + cmd.totalOutput + " output from command.");
 
             synchronized (cmd)
             {

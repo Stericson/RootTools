@@ -320,6 +320,21 @@ public class SanityCheckRootTools extends Activity
                 };
                 shell.add(cmd);
 
+                visualUpdate(TestHandler.ACTION_PDISPLAY, "getevent - /dev/input/event0");
+                visualUpdate(TestHandler.ACTION_DISPLAY, "[ getevent - /dev/input/event0 ]\n");
+
+                cmd = new Command(0, 0, "getevent /dev/input/event0")
+                {
+                    @Override
+                    public void commandOutput(int id, String line)
+                    {
+                        visualUpdate(TestHandler.ACTION_DISPLAY, line + "\n");
+                        super.commandOutput(id, line);
+                    }
+
+                };
+                shell.add(cmd);
+
             }
             catch (Exception e)
             {
@@ -362,6 +377,7 @@ public class SanityCheckRootTools extends Activity
                     }
                 };
                 shell.add(cmd);
+
             }
             catch (Exception e)
             {
