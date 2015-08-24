@@ -1221,6 +1221,7 @@ public final class RootToolsInternalMethods
      * space on SDCard. Will also return <code>false</code>, if the SDCard is not mounted as
      * read/write
      */
+     @SuppressWarnings("deprecation")
     public boolean hasEnoughSpaceOnSdCard(long updateSize)
     {
         RootTools.log("Checking SDcard size and that it is mounted as RW");
@@ -1231,8 +1232,15 @@ public final class RootToolsInternalMethods
         }
         File path = Environment.getExternalStorageDirectory();
         StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSize();
-        long availableBlocks = stat.getAvailableBlocks();
+        long blockSize = 0;
+        long availableBlocks = 0;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            blockSize = stat.getBlockSize();
+            availableBlocks = stat.getAvailableBlocks();
+        } else {
+            blockSize = stat.getBlockSizeLong();
+            availableBlocks = stat.getAvailableBlocksLong();
+        }
         return (updateSize < availableBlocks * blockSize);
     }
 
