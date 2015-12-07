@@ -31,7 +31,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
-import com.example.roottools.Constants;
+import com.stericson.roottools.Constants;
 import com.stericson.rootshell.RootShell;
 import com.stericson.rootshell.execution.Command;
 import com.stericson.rootshell.execution.Shell;

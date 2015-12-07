@@ -12,4 +12,7 @@ allprojects {
     repositories {
         jcenter()
     }
+
+    group 'com.stericson.odemolliens.roottools'
+    version = '1.0.1'
 }

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 import com.stericson.rootshell.execution.Command;
 import com.stericson.rootshell.execution.Shell;
-import com.example.roottools.Constants;
+import com.stericson.roottools.Constants;
 import com.stericson.roottools.RootTools;
 import com.stericson.roottools.containers.Mount;
 
