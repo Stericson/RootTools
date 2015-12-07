@@ -14,5 +14,5 @@ allprojects {
     }
 
     group 'com.stericson.odemolliens.roottools'
-    version = '1.0.1'
+    version = '4.3'
 }
