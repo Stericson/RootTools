@@ -1,0 +1,2 @@
+rootProject.name = 'RootToolsAndroidStudio'
+include ':demo', ':RootTools', ':RootShell'
