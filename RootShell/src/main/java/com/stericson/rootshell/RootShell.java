@@ -346,6 +346,19 @@ public class RootShell {
      * @throws TimeoutException if this operation times out. (cannot determine if access is given)
      */
     public static boolean isAccessGiven() {
+        return isAccessGiven(0, 3);
+    }
+
+    /**
+     * Control how many time of retries should request
+     *
+     * @param timeout The timeout
+     * @param retries The number of retries
+     *
+     * @return <code>true</code> if your app has been given root access.
+     * @throws TimeoutException if this operation times out. (cannot determine if access is given)
+     */
+    public static boolean isAccessGiven(int timeout, int retries) {
         final Set<String> ID = new HashSet<String>();
         final int IAG = 158;
 
