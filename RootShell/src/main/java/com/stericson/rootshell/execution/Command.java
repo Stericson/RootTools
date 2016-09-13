@@ -22,13 +22,14 @@
 
 package com.stericson.rootshell.execution;
 
-import com.stericson.rootshell.RootShell;
-
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+
+import com.stericson.rootshell.RootShell;
 
 import java.io.IOException;
 
@@ -168,14 +169,37 @@ public class Command {
     public final String getCommand() {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < command.length; i++) {
-            if (i > 0) {
+        if(javaCommand) {
+            String filePath = context.getFilesDir().getPath();
+            for (int i = 0; i < command.length; i++) {
+                /*
+                 * TODO Make withFramework optional for applications
+                 * that do not require access to the fw. -CFR
+                 */
+                //export CLASSPATH=/data/user/0/ch.masshardt.emailnotification/files/anbuild.dex ; app_process /system/bin
+                if (Build.VERSION.SDK_INT > 22) {
+                    //dalvikvm command is not working in Android Marshmallow
+                    sb.append(
+                            "export CLASSPATH=" + filePath + "/anbuild.dex;"
+                                    + " app_process /system/bin "
+                                    + command[i]);
+                } else {
+                    sb.append(
+                            "dalvikvm -cp " + filePath + "/anbuild.dex"
+                                    + " com.android.internal.util.WithFramework"
+                                    + " com.stericson.RootTools.containers.RootClass "
+                                    + command[i]);
+                }
+
                 sb.append('\n');
             }
-
-            sb.append(command[i]);
         }
-
+        else {
+            for (int i = 0; i < command.length; i++) {
+                sb.append(command[i]);
+                sb.append('\n');
+            }
+        }
         return sb.toString();
     }
 
