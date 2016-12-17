@@ -148,11 +148,7 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */ {
                 } catch (InterruptedException e) {
                 }
 
-                String strRawFolder = "res" + File.separator + "raw";
-                if (builtPath.toString().startsWith("build")); //Check if running in AndroidStudio
-                    strRawFolder = "src" + File.separator + "main" + File.separator + "res" + File.separator + "raw";
-
-                File rawFolder = new File(strRawFolder);
+                File rawFolder = new File("res" + File.separator + "raw");
                 if (!rawFolder.exists()) {
                     rawFolder.mkdirs();
                 }
@@ -161,14 +157,14 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */ {
                 if (onWindows) {
                     cmd = new String[]{
                             "cmd", "/C",
-                            "dx --dex --output=" + strRawFolder + File.separator + "anbuild.dex "
+                            "dx --dex --output=res" + File.separator + "raw" + File.separator + "anbuild.dex "
                                     + builtPath + File.separator + "anbuild.jar"
                     };
                 } else {
                     cmd = new String[]{
                             getPathToDx(),
                             "--dex",
-                            "--output=" + strRawFolder + File.separator + "anbuild.dex",
+                            "--output=res" + File.separator + "raw" + File.separator + "anbuild.dex",
                             builtPath + File.separator + "anbuild.jar"
                     };
                 }
@@ -179,18 +175,12 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */ {
                 } catch (InterruptedException e) {
                 }
             }
-            System.out.println("All done. ::: anbuild.dex should now be in your project's src" + File.separator + "main" + File.separator + "res" + File.separator + "raw" + File.separator + " folder :::");
+            System.out.println("All done. ::: anbuild.dex should now be in your project's res" + File.separator + "raw" + File.separator + " folder :::");
         }
 
         protected void lookup(File path, List<File> fileList) {
-            String desourcedPath = path.toString().replace("src" + File.separator, "").replace("main" + File.separator + "java" + File.separator, "");
-
-            File[] files = path.listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File file) {
-                    return true;
-                }
-            });
+            String desourcedPath = path.toString().replace("src" + File.separator, "");
+            File[] files = path.listFiles();
             for (File file : files) {
                 if (file.isDirectory()) {
                     if (-1 == file.getAbsolutePath().indexOf(AVOIDDIRPATH)) {
@@ -267,8 +257,6 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */ {
                     if (splitFileName[1].contains("W")) {
                         char[] fileNameChars = splitFileName[1].toCharArray();
                         fileName = String.valueOf(fileNameChars[0]);
-                    } else if (splitFileName[1].contains("rc")) {
-                        continue; //Do not use release candidates
                     } else {
                         fileName = splitFileName[1];
                     }
@@ -319,12 +307,6 @@ public class RootClass /* #ANNOTATIONS extends AbstractProcessor */ {
                 File eclipsePath = new File("bin" + File.separator + "classes"); // Eclipse IDE
                 if (eclipsePath.isDirectory()) {
                     foundPath = eclipsePath;
-                }
-            }
-            if (null == foundPath) {
-                File androidStudioPath = new File("build" + File.separator + "intermediates" + File.separator + "classes" + File.separator + "debug"); // Android Studio
-                if (androidStudioPath.isDirectory()) {
-                    foundPath = androidStudioPath;
                 }
             }
 
