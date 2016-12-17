@@ -1,5 +1,5 @@
 /* 
- * This file is part of the RootTools Project: http://code.google.com/p/roottools/
+ * This file is part of the RootTools Project: http://code.google.com/p/RootTools/
  *  
  * Copyright (c) 2012 Stephen Erickson, Chris Ravenscroft, Dominik Schuermann, Adam Shanks
  *  
@@ -20,7 +20,7 @@
  * limitations under that License.
  */
 
-package com.stericson.roottools.containers;
+package com.stericson.RootTools.containers;
 
 import java.io.File;
 import java.util.Arrays;

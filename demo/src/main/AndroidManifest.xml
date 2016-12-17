@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_launcher">
 
         <activity
-            android:name="com.stericson.rootshell.SanityCheckRootShell"
+            android:name="com.stericson.RootShell.SanityCheckRootShell"
             android:label="@string/app_name" >
 
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.example.roottools;
+package com.example.RootTools;
 
 import org.junit.Test;
 

@@ -1,5 +1,5 @@
 /* 
- * This file is part of the RootTools Project: http://code.google.com/p/roottools/
+ * This file is part of the RootTools Project: http://code.google.com/p/RootTools/
  *  
  * Copyright (c) 2012 Stephen Erickson, Chris Ravenscroft, Dominik Schuermann, Adam Shanks
  *  
@@ -20,7 +20,7 @@
  * limitations under that License.
  */
 
-package com.stericson.roottools.internal;
+package com.stericson.RootTools.internal;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,9 +37,9 @@ import java.security.NoSuchAlgorithmException;
 
 import android.util.Log;
 
-import com.stericson.rootshell.execution.Command;
-import com.stericson.rootshell.execution.Shell;
-import com.stericson.roottools.RootTools;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.RootTools;
 
 import android.content.Context;
 

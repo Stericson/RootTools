@@ -1,5 +1,5 @@
 /* 
- * This file is part of the RootTools Project: http://code.google.com/p/roottools/
+ * This file is part of the RootTools Project: http://code.google.com/p/RootTools/
  *  
  * Copyright (c) 2012 Stephen Erickson, Chris Ravenscroft, Dominik Schuermann, Adam Shanks
  *  
@@ -20,7 +20,7 @@
  * limitations under that License.
  */
 
-package com.stericson.roottools;
+package com.stericson.RootTools;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -32,10 +32,10 @@ import android.os.StrictMode;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.stericson.rootshell.exceptions.RootDeniedException;
-import com.stericson.rootshell.execution.Command;
-import com.stericson.rootshell.execution.Shell;
-import com.stericson.roottools.containers.Permissions;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.containers.Permissions;
 
 import java.io.IOException;
 import java.util.List;

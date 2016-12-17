@@ -1,5 +1,5 @@
 /* 
- * This file is part of the RootTools Project: http://code.google.com/p/roottools/
+ * This file is part of the RootTools Project: http://code.google.com/p/RootTools/
  *  
  * Copyright (c) 2012 Stephen Erickson, Chris Ravenscroft, Dominik Schuermann, Adam Shanks
  *  
@@ -20,17 +20,17 @@
  * limitations under that License.
  */
 
-package com.stericson.roottools.internal;
+package com.stericson.RootTools.internal;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.stericson.rootshell.execution.Command;
-import com.stericson.rootshell.execution.Shell;
-import com.stericson.roottools.Constants;
-import com.stericson.roottools.RootTools;
-import com.stericson.roottools.containers.Mount;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.Constants;
+import com.stericson.RootTools.RootTools;
+import com.stericson.RootTools.containers.Mount;
 
 public class Remounter
 {
@@ -120,8 +120,11 @@ public class Remounter
                             true,
                             "busybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
+                            "toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
-                            "/system/bin/toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath()
+                            "mount -o remount," + mountType.toLowerCase() + " " + file,
+                            "/system/bin/toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
+                            "/system/bin/toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath()
                     );
                     Shell.startRootShell().add(command);
                     commandWait(command);
