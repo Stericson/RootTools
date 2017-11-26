@@ -119,13 +119,15 @@ public class Remounter
                     Command command = new Command(0,
                             true,
                             "busybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
+                            "busybox mount -o remount," + mountType.toLowerCase() + " " + file,
                             "toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
-                            "toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
+                            "toolbox mount -o remount," + mountType.toLowerCase() + " " + file,                             "toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "mount -o remount," + mountType.toLowerCase() + " " + file,
                             "/system/bin/toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
-                            "/system/bin/toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath()
-                    );
+                            "/system/bin/toolbox mount -o remount," + mountType.toLowerCase() + " " + file,
+                            "/system/bin/toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
+                            "/system/bin/toybox mount -o remount," + mountType.toLowerCase() + " " + file);
                     Shell.startRootShell().add(command);
                     commandWait(command);
 
