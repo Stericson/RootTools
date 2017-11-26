@@ -120,14 +120,20 @@ public class Remounter
                             true,
                             "busybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "busybox mount -o remount," + mountType.toLowerCase() + " " + file,
+                            "busybox mount -o " + mountType.toLowerCase() + ",remount " + mountPoint.getDevice().getAbsolutePath(),
+                            "busybox mount -o " + mountType.toLowerCase() + ",remount " + file,
                             "toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "toolbox mount -o remount," + mountType.toLowerCase() + " " + file,                             "toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
+                            "toolbox mount -o " + mountType.toLowerCase() + ",remount " + mountPoint.getDevice().getAbsolutePath(),
+                            "toolbox mount -o " + mountType.toLowerCase() + ",remount " + file,
                             "mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
                             "mount -o remount," + mountType.toLowerCase() + " " + file,
-                            "/system/bin/toolbox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
-                            "/system/bin/toolbox mount -o remount," + mountType.toLowerCase() + " " + file,
-                            "/system/bin/toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
-                            "/system/bin/toybox mount -o remount," + mountType.toLowerCase() + " " + file);
+                            "mount -o " + mountType.toLowerCase() + ",remount " + mountPoint.getDevice().getAbsolutePath(),
+                            "mount -o " + mountType.toLowerCase() + ",remount " + file,
+                            "toybox mount -o remount," + mountType.toLowerCase() + " " + mountPoint.getDevice().getAbsolutePath() + " " + mountPoint.getMountPoint().getAbsolutePath(),
+                            "toybox mount -o remount," + mountType.toLowerCase() + " " + file,
+                            "toybox mount -o " + mountType.toLowerCase() + ",remount " + mountPoint.getDevice().getAbsolutePath(),
+                            "toybox mount -o " + mountType.toLowerCase() + ",remount " + file);
                     Shell.startRootShell().add(command);
                     commandWait(command);
 
