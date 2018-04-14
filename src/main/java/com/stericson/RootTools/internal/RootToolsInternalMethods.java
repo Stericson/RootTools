@@ -1159,7 +1159,7 @@ public final class RootToolsInternalMethods {
         InternalVariables.processRunning = false;
 
         try {
-            Command command = new Command(0, false, "ps") {
+            Command command = new Command(0, false, "ps | grep " + processName) {
                 @Override
                 public void commandOutput(int id, String line) {
                     if (line.contains(processName)) {
