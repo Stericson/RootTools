@@ -741,11 +741,14 @@ public final class RootToolsInternalMethods {
                         RootTools.log(line);
 
                         String[] fields = line.split(" ");
-                        InternalVariables.mounts.add(new Mount(new File(fields[0]), // device
-                                new File(fields[1]), // mountPoint
-                                fields[2], // fstype
-                                fields[3] // flags
-                        ));
+
+                        if(fields.length > 3) {
+                            InternalVariables.mounts.add(new Mount(new File(fields[0]), // device
+                                    new File(fields[1]), // mountPoint
+                                    fields[2], // fstype
+                                    fields[3] // flags
+                            ));
+                        }
                     }
 
                     super.commandOutput(id, line);
