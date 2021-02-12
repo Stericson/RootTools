@@ -1,2 +1,0 @@
-# RootTools
-RootTools Library
